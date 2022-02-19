@@ -1,6 +1,5 @@
 {
   "private": "true",
-  "description": "",
   "homepage": "https://github.com/yjl9903/Coin#readme",
   "bugs": {
     "url": "https://github.com/yjl9903/Coin/issues"
@@ -13,10 +12,27 @@
   "author": "XLor",
   "scripts": {
     "build": "pnpm run build --filter ./packages",
-    "dev": "pnpm -C packages/app run dev"
+    "dev": "pnpm -C packages/app run dev",
+    "format": "prettier --write packages/**/*.{ts,js,vue} --ignore-path .gitignore"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.ts": [
+      "prettier --parser=typescript --write"
+    ],
+    "*.vue": [
+      "prettier --parser=vue --write"
+    ]
   },
   "devDependencies": {
+    "husky": "^7.0.4",
+    "lint-staged": "^12.3.4",
     "pnpm": "^6.31.0",
+    "prettier": "^2.5.1",
     "typescript": "^4.5.4"
   }
 }
