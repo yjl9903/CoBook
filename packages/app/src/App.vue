@@ -25,6 +25,6 @@ const show = ref(false);
 
 <style>
 body {
-  background: var(--background-color);
+  background: rgb(247, 247, 247);
 }
 </style>
