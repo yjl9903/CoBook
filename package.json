@@ -11,9 +11,11 @@
   "license": "MIT",
   "author": "XLor",
   "scripts": {
+    "app": "coin build",
     "build": "pnpm run build --filter ./packages",
-    "dev": "pnpm -C packages/app run dev",
-    "format": "prettier --write packages/**/*.{ts,js,vue} --ignore-path .gitignore"
+    "dev": "coin dev",
+    "format": "prettier --write packages/**/*.{ts,js,vue} --ignore-path .gitignore",
+    "publish": "zx ./scripts/publish.mjs"
   },
   "husky": {
     "hooks": {
@@ -29,10 +31,12 @@
     ]
   },
   "devDependencies": {
+    "coin-cli": "workspace:*",
     "husky": "4.3.7",
     "lint-staged": "^12.3.4",
     "pnpm": "^6.31.0",
     "prettier": "^2.5.1",
-    "typescript": "^4.5.4"
+    "typescript": "^4.5.4",
+    "zx": "^5.1.0"
   }
 }

@@ -1,9 +1,70 @@
 import { cac } from 'cac';
-import { lightRed } from 'kolorist';
+import { blue, bold, cyan, dim, lightRed } from 'kolorist';
+import { build, createServer } from 'vite';
 
-import { version } from '../package.json'
+import { version } from '../package.json';
 
-const cli = cac('coin')
+import { RawBuildOptions, RawDevOptions, resolveOptions } from './options';
+import { findFreePort, findRemoteHost } from './utils';
+
+const cli = cac('coin');
+
+cli
+  .command('build')
+  .option('--emptyOutDir', "force empty outDir when it's outside of root", {
+    default: false
+  })
+  .option('--outDir <dir>', 'output directory', { default: 'dist' })
+  .action(async (rawOptions: RawBuildOptions) => {
+    const options = await resolveOptions();
+
+    await build({
+      root: options.appRoot,
+      build: {
+        emptyOutDir: rawOptions.emptyOutDir,
+        outDir: rawOptions.outDir
+      }
+    });
+  });
+
+cli
+  .command('dev')
+  .option('--host', 'specify hostname')
+  .option('--port <port>', 'port to listen to', { default: 3000 })
+  .action(async (rawOptions: RawDevOptions) => {
+    const options = await resolveOptions();
+
+    const port = await findFreePort(rawOptions.port);
+
+    const server = await createServer({
+      root: options.appRoot,
+      logLevel: 'warn'
+    });
+
+    await server.listen(port);
+
+    printDevInfo(port, rawOptions.host);
+  });
+
+function printDevInfo(port: number, host?: string | boolean) {
+  console.log();
+  console.log(`${bold('  Coin')} ${cyan(`v${version}`)}`);
+
+  if (port) {
+    console.log();
+    console.log(`${dim('  Local    ')} > ${cyan(`http://localhost:${bold(port)}/`)}`);
+
+    if (host) {
+      for (const { address } of findRemoteHost()) {
+        console.log(`${dim('  Remote   ')} > ${blue(`http://${address}:${port}/`)}`);
+      }
+    } else {
+      console.log(`${dim('  Remote   ')} > ${dim('pass --host to enable')}`);
+    }
+  }
+
+  console.log();
+}
 
 cli.help();
 

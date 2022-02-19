@@ -16,12 +16,18 @@
   "bin": {
     "coin": "./coin.mjs"
   },
+  "files": [
+    "app",
+    "dist",
+    "coin.mjs"
+  ],
   "scripts": {
     "build": "tsup-node src/cli.ts --format cjs --splitting"
   },
   "dependencies": {
     "cac": "^6.7.12",
-    "kolorist": "^1.5.1"
+    "kolorist": "^1.5.1",
+    "vite": "^2.8.0"
   },
   "devDependencies": {
     "tsup": "^5.11.13"
