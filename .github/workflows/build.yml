@@ -20,3 +20,8 @@ jobs:
           cache: pnpm
       - run: pnpm install
       - run: pnpm build
+      - name: Github Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./packages/app/dist
