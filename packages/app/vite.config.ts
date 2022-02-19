@@ -13,6 +13,10 @@ const __ICON__ = [
   `<link rel="alternate icon" href="/favicon.ico" type="image/png" sizes="16x16">`,
   `<link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180">`,
   `<link rel="mask-icon" href="/favicon.svg" color="#FFFFFF">`,
+  `<link href="splash/iphonex_splash.png" media="(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3)" rel="apple-touch-startup-image" />`,
+  `<link href="splash/iphonexr_splash.png" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />`,
+  `<link href="splash/iphonexsmax_splash.png" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3)" rel="apple-touch-startup-image" />`,
+  `<link href="splash/ipad_splash.png" media="(device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />`,
   `<meta name="theme-color" content="#ffffff">`
 ].join('\n');
 
