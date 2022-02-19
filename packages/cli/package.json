@@ -27,7 +27,14 @@
   "dependencies": {
     "cac": "^6.7.12",
     "kolorist": "^1.5.1",
-    "vite": "^2.8.0"
+    "vant": "^3.4.5",
+    "vite": "^2.8.0",
+    "vite-plugin-html": "^3.0.6",
+    "vite-plugin-pwa": "^0.11.13",
+    "vite-plugin-style-import": "^2.0.0",
+    "vue": "^3.2.25",
+    "vue-router": "4",
+    "workbox-window": "^6.4.2"
   },
   "devDependencies": {
     "tsup": "^5.11.13"
