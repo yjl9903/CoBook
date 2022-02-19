@@ -8,7 +8,14 @@ const value = ref('');
 
 <template>
   <cell-group inset style="margin-top: 16px">
-    <field v-model="value" label="金额" readonly clickable @touchstart.stop="show = true" />
+    <field
+      v-model="value"
+      label="金额"
+      readonly
+      clickable
+      @touchstart.stop="show = true"
+      input-align="right"
+    />
     <cell>
       <grid :border="false" clickable>
         <grid-item v-for="i in 8" icon="photo-o" text="文字" />
@@ -16,7 +23,7 @@ const value = ref('');
     </cell>
   </cell-group>
   <div style="margin: 16px">
-    <Button round block type="primary" native-type="submit"> 提交 </Button>
+    <Button round block type="primary" native-type="submit">提交</Button>
   </div>
   <number-keyboard v-model="value" :show="show" :maxlength="6" @blur="show = false" />
 </template>
