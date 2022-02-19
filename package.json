@@ -13,7 +13,7 @@
   "scripts": {
     "app": "coin build",
     "build": "pnpm run build --filter ./packages",
-    "dev": "coin dev",
+    "dev": "coin dev --host",
     "format": "prettier --write packages/**/*.{ts,js,vue} --ignore-path .gitignore",
     "publish": "zx ./scripts/publish.mjs"
   },

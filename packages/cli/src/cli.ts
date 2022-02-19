@@ -1,3 +1,4 @@
+import path from 'path';
 import { cac } from 'cac';
 import { blue, bold, cyan, dim, lightRed } from 'kolorist';
 import { build, createServer } from 'vite';
@@ -14,7 +15,7 @@ cli
   .option('--emptyOutDir', "force empty outDir when it's outside of root", {
     default: false
   })
-  .option('--outDir <dir>', 'output directory', { default: 'dist' })
+  .option('--outDir <dir>', 'output directory', { default: path.join(process.cwd(), './dist') })
   .action(async (rawOptions: RawBuildOptions) => {
     const options = await resolveOptions();
 

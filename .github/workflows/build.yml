@@ -19,9 +19,9 @@ jobs:
           node-version: 14
           cache: pnpm
       - run: pnpm install
-      - run: pnpm build
+      - run: pnpm run app
       - name: Github Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./packages/app/dist
+          publish_dir: ./dist

@@ -3,7 +3,7 @@ import { NavBar, Icon } from 'vant';
 </script>
 
 <template>
-  <nav-bar fixed>
+  <nav-bar fixed placeholder>
     <template #left>
       <Icon name="user-o" color="black" />
     </template>
