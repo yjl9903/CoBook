@@ -14,4 +14,6 @@ import { NavBar, Icon } from 'vant';
       <Icon name="setting-o" color="black" />
     </template>
   </nav-bar>
+
+  <router-view></router-view>
 </template>

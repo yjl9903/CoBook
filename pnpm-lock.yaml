@@ -29,10 +29,12 @@ importers:
       vue: ^3.2.25
       vue-router: '4'
       vue-tsc: ^0.29.8
+      workbox-window: ^6.4.2
     dependencies:
       vant: 3.4.5_vue@3.2.31
       vue: 3.2.31
       vue-router: 4.0.12_vue@3.2.31
+      workbox-window: 6.4.2
     devDependencies:
       '@vitejs/plugin-vue': 2.2.2_vite@2.8.4+vue@3.2.31
       consola: 2.15.3
@@ -1332,7 +1334,6 @@ packages:
 
   /@types/trusted-types/2.0.2:
     resolution: {integrity: sha512-F5DIZ36YVLE+PN+Zwws4kJogq47hNgX3Nx6WyDJ3kcplxyke3XIzB8uK5n/Lpm1HBsbGzd6nmGehL8cPekP+Tg==}
-    dev: true
 
   /@vant/icons/1.7.3:
     resolution: {integrity: sha512-tW4EqzxN4kXw1rnlnQJQHofEifPbt/gECOWiibomht8QLyvoGuE4iUmDFS288dJ07ZjuTy0bhdABj0SENo2fmQ==}
@@ -4007,7 +4008,6 @@ packages:
 
   /workbox-core/6.4.2:
     resolution: {integrity: sha512-1U6cdEYPcajRXiboSlpJx6U7TvhIKbxRRerfepAJu2hniKwJ3DHILjpU/zx3yvzSBCWcNJDoFalf7Vgd7ey/rw==}
-    dev: true
 
   /workbox-expiration/6.4.2:
     resolution: {integrity: sha512-0hbpBj0tDnW+DZOUmwZqntB/8xrXOgO34i7s00Si/VlFJvvpRKg1leXdHHU8ykoSBd6+F2KDcMP3swoCi5guLw==}
@@ -4084,7 +4084,6 @@ packages:
     dependencies:
       '@types/trusted-types': 2.0.2
       workbox-core: 6.4.2
-    dev: true
 
   /wrap-ansi/6.2.0:
     resolution: {integrity: sha512-r6lPcBGxZXlIcymEu7InxDMhdW0KDxpLgoFLcguasxCaJ/SOIZwINatK9KY/tf+ZrlywOKU0UDj3ATXUBfxJXA==}
