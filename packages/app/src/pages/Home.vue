@@ -25,5 +25,5 @@ const value = ref('');
   <div style="margin: 16px">
     <Button round block type="primary" native-type="submit">提交</Button>
   </div>
-  <number-keyboard v-model="value" :show="show" :maxlength="6" @blur="show = false" />
+  <number-keyboard v-model="value" extra-key="." :show="show" :maxlength="10" @blur="show = false" />
 </template>
