@@ -17,7 +17,8 @@ const __ICON__ = [
   `<link href="splash/iphonexr_splash.png" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />`,
   `<link href="splash/iphonexsmax_splash.png" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3)" rel="apple-touch-startup-image" />`,
   `<link href="splash/ipad_splash.png" media="(device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />`,
-  `<meta name="theme-color" content="#ffffff">`
+  `<meta name="theme-color" content="#ffffff">`,
+  `<meta name="apple-mobile-web-app-capable" content="yes">`
 ].join('\n');
 
 // https://vitejs.dev/config/
