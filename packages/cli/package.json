@@ -1,0 +1,29 @@
+{
+  "name": "coin-cli",
+  "version": "1.0.0",
+  "description": "",
+  "homepage": "https://github.com/yjl9903/Coin#readme",
+  "bugs": {
+    "url": "https://github.com/yjl9903/Coin/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yjl9903/Coin.git"
+  },
+  "license": "MIT",
+  "author": "XLor",
+  "main": "dist/index.js",
+  "bin": {
+    "coin": "./coin.mjs"
+  },
+  "scripts": {
+    "build": "tsup-node src/cli.ts --format cjs --splitting"
+  },
+  "dependencies": {
+    "cac": "^6.7.12",
+    "kolorist": "^1.5.1"
+  },
+  "devDependencies": {
+    "tsup": "^5.11.13"
+  }
+}

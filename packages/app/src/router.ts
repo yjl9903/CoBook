@@ -7,10 +7,7 @@ export const routes = createRouter({
     {
       path: '/',
       name: 'Home',
-      component: Home,
-      meta: {
-        title: '上传'
-      }
+      component: Home
     }
   ],
   scrollBehavior(to, from, savedPosition) {
