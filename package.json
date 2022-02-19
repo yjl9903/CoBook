@@ -12,7 +12,8 @@
   "license": "MIT",
   "author": "XLor",
   "scripts": {
-    "build": "pnpm run build --filter ./packages"
+    "build": "pnpm run build --filter ./packages",
+    "dev": "pnpm -C packages/app run dev"
   },
   "devDependencies": {
     "pnpm": "^6.31.0",
