@@ -26,6 +26,7 @@
   },
   "dependencies": {
     "cac": "^6.7.12",
+    "debug": "^4.3.3",
     "kolorist": "^1.5.1",
     "vant": "^3.4.5",
     "vite": "^2.8.0",
@@ -37,6 +38,7 @@
     "workbox-window": "^6.4.2"
   },
   "devDependencies": {
+    "@types/debug": "^4.1.7",
     "tsup": "^5.11.13"
   }
 }

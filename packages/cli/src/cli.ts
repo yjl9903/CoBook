@@ -11,16 +11,16 @@ import { findFreePort, findRemoteHost } from './utils';
 const cli = cac('cobook');
 
 cli
-  .command('build')
+  .command('build [root]')
   .option('--emptyOutDir', "force empty outDir when it's outside of root", {
     default: false
   })
   .option('--outDir <dir>', 'output directory', { default: path.join(process.cwd(), './dist') })
-  .action(async (rawOptions: RawBuildOptions) => {
+  .action(async (root: string | undefined, rawOptions: RawBuildOptions) => {
     const options = await resolveOptions();
 
     await build({
-      root: options.appRoot,
+      root: options.clientRoot,
       build: {
         emptyOutDir: rawOptions.emptyOutDir,
         outDir: rawOptions.outDir
@@ -29,16 +29,16 @@ cli
   });
 
 cli
-  .command('dev')
+  .command('dev [root]')
   .option('--host', 'specify hostname')
   .option('--port <port>', 'port to listen to', { default: 3000 })
-  .action(async (rawOptions: RawDevOptions) => {
+  .action(async (root: string | undefined, rawOptions: RawDevOptions) => {
     const options = await resolveOptions();
 
     const port = await findFreePort(rawOptions.port);
 
     const server = await createServer({
-      root: options.appRoot,
+      root: options.clientRoot,
       logLevel: 'warn'
     });
 
