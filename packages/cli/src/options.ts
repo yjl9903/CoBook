@@ -1,7 +1,9 @@
 import path from 'path';
 import { readFileSync, existsSync } from 'fs';
 import { debug as createDebug } from 'debug';
-import { load } from 'js-yaml'
+import { load } from 'js-yaml';
+
+import type { RawCoBookOption, CoBookOption } from './types';
 
 const debug = createDebug('cobook:cli');
 
@@ -20,7 +22,7 @@ export interface RawDevOptions {
   host: boolean;
 }
 
-export async function resolveOptions(root: string = process.cwd()) {
+export async function resolveOptions(root: string = process.cwd()): Promise<CoBookOption> {
   root = path.resolve(process.cwd(), root);
   debug(`root      : ${root}`);
   const clientRoot = await getClientRoot(root);
@@ -38,8 +40,7 @@ export async function resolveOptions(root: string = process.cwd()) {
   };
 }
 
-
-function getConfig(root: string) {
+function getConfig(root: string): RawCoBookOption {
   return load(readFileSync(path.join(root, 'cobook.yml'), 'utf-8')) as any;
 }
 
@@ -71,5 +72,3 @@ async function getWorkerRoot(root: string) {
   }
   throw new Error('Can not find web app');
 }
-
-async function prepareWorkerRoot(root: string) {}

@@ -8,3 +8,6 @@ template:
   - name: Dinner
     tags: ['Food', 'Dinner']
     price: 10
+
+wrangler:
+  account_id: 7cbfb60ad7052f0d8cf590a51e024987

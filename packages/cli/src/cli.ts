@@ -1,14 +1,18 @@
 import path from 'path';
 import { cac } from 'cac';
-import { blue, bold, cyan, dim, lightRed } from 'kolorist';
+import { blue, bold, cyan, dim, lightRed, lightYellow } from 'kolorist';
 import { build, createServer } from 'vite';
+import { debug as createDebug } from 'debug';
 
 import { version } from '../package.json';
 
 import { RawBuildOptions, RawDevOptions, resolveOptions } from './options';
 import { findFreePort, findRemoteHost } from './utils';
+import { initWorker } from './worker';
 
 const cli = cac('cobook');
+
+const debug = createDebug('cobook:cli');
 
 cli
   .command('build [root]')
@@ -47,25 +51,52 @@ cli
     printDevInfo(port, rawOptions.host);
   });
 
-function printDevInfo(port: number, host?: string | boolean) {
+cli
+  .command('worker [root]')
+  .option('--port <port>', 'port to listen to', { default: 5000 })
+  .action(async (root: string | undefined, rawOptions: RawDevOptions) => {
+    const options = await resolveOptions(root);
+
+    const worker = await initWorker(options);
+
+    const port = await findFreePort(rawOptions.port);
+
+    worker.setOptions({ port, watch: true });
+
+    await worker.startServer();
+
+    printDevInfo(port, false, true);
+  });
+
+function printDevInfo(port: number, host?: string | boolean, worker = false) {
   console.log();
-  console.log(`${bold('  CoBook')} ${cyan(`v${version}`)}`);
+  console.log(`${bold('  CoBook')} ${worker ? lightYellow('Worker ') : ''}${cyan(`v${version}`)}`);
 
   if (port) {
     console.log();
-    console.log(`${dim('  Local    ')} > ${cyan(`http://localhost:${bold(port)}/`)}`);
+
+    if (!worker) {
+      console.log(`${dim('  Local    ')} > ${cyan(`http://localhost:${bold(port)}/`)}`);
+    } else {
+      console.log(`${dim('  Worker   ')} > ${cyan(`http://localhost:${bold(port)}/`)}`);
+    }
 
     if (host) {
       for (const { address } of findRemoteHost()) {
         console.log(`${dim('  Remote   ')} > ${blue(`http://${address}:${port}/`)}`);
       }
-    } else {
+    } else if (!worker) {
       console.log(`${dim('  Remote   ')} > ${dim('pass --host to enable')}`);
     }
   }
 
   console.log();
 }
+
+cli.on('command:*', () => {
+  console.error(`${lightRed('Invalid command:')} cobook ${cli.args.join(' ')}`);
+  process.exit(1);
+});
 
 cli.help();
 
@@ -81,6 +112,7 @@ async function bootstrap() {
     } else {
       console.error(error);
     }
+    debug(error);
     process.exit(1);
   }
 }
