@@ -1,0 +1,10 @@
+template:
+  - name: Breakfast
+    tags: ['Food', 'Breakfast']
+    price: 10
+  - name: Lunch
+    tags: ['Food', 'Lunch']
+    price: 10
+  - name: Dinner
+    tags: ['Food', 'Dinner']
+    price: 10

@@ -11,9 +11,9 @@
   "license": "MIT",
   "author": "XLor",
   "scripts": {
-    "app": "cobook build",
+    "app": "cobook build ./example",
     "build": "pnpm run build --filter ./packages",
-    "dev": "cobook dev --host",
+    "dev": "cobook dev ./example --host",
     "format": "prettier --write packages/**/*.{ts,js,vue} --ignore-path .gitignore",
     "publish": "zx ./scripts/publish.mjs"
   },

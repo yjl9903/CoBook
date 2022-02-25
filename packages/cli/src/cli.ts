@@ -17,7 +17,7 @@ cli
   })
   .option('--outDir <dir>', 'output directory', { default: path.join(process.cwd(), './dist') })
   .action(async (root: string | undefined, rawOptions: RawBuildOptions) => {
-    const options = await resolveOptions();
+    const options = await resolveOptions(root);
 
     await build({
       root: options.clientRoot,
@@ -33,7 +33,7 @@ cli
   .option('--host', 'specify hostname')
   .option('--port <port>', 'port to listen to', { default: 3000 })
   .action(async (root: string | undefined, rawOptions: RawDevOptions) => {
-    const options = await resolveOptions();
+    const options = await resolveOptions(root);
 
     const port = await findFreePort(rawOptions.port);
 

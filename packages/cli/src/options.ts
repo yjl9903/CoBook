@@ -1,6 +1,7 @@
 import path from 'path';
-import { existsSync } from 'fs';
+import { readFileSync, existsSync } from 'fs';
 import { debug as createDebug } from 'debug';
+import { load } from 'js-yaml'
 
 const debug = createDebug('cobook:cli');
 
@@ -20,15 +21,26 @@ export interface RawDevOptions {
 }
 
 export async function resolveOptions(root: string = process.cwd()) {
+  root = path.resolve(process.cwd(), root);
+  debug(`root      : ${root}`);
   const clientRoot = await getClientRoot(root);
   const workerRoot = await getWorkerRoot(root);
   debug(`clientRoot: ${clientRoot}`);
   debug(`workerRoot: ${workerRoot}`);
 
+  const config = getConfig(root);
+  debug(config);
+
   return {
     clientRoot,
-    workerRoot
+    workerRoot,
+    ...config
   };
+}
+
+
+function getConfig(root: string) {
+  return load(readFileSync(path.join(root, 'cobook.yml'), 'utf-8')) as any;
 }
 
 async function getClientRoot(root: string) {
@@ -48,6 +60,7 @@ async function getClientRoot(root: string) {
 async function getWorkerRoot(root: string) {
   const paths = [
     path.join(root, 'worker'),
+    path.join(root, 'worker/dist'),
     path.join(__dirname, '../../worker/dist'),
     path.join(__dirname, '../worker')
   ];
