@@ -4,7 +4,7 @@ import { createHtmlPlugin } from 'vite-plugin-html';
 import vue from '@vitejs/plugin-vue';
 import { createStyleImportPlugin, VantResolve } from 'vite-plugin-style-import';
 
-const __APP_NAME__ = 'Coin';
+const __APP_NAME__ = 'Coin Book';
 
 const __DESCRIPTION__ = 'Yet another account record...';
 

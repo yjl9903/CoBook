@@ -8,7 +8,7 @@ import { version } from '../package.json';
 import { RawBuildOptions, RawDevOptions, resolveOptions } from './options';
 import { findFreePort, findRemoteHost } from './utils';
 
-const cli = cac('coin');
+const cli = cac('cobook');
 
 cli
   .command('build')
@@ -49,7 +49,7 @@ cli
 
 function printDevInfo(port: number, host?: string | boolean) {
   console.log();
-  console.log(`${bold('  Coin')} ${cyan(`v${version}`)}`);
+  console.log(`${bold('  CoBook')} ${cyan(`v${version}`)}`);
 
   if (port) {
     console.log();

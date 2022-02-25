@@ -1,25 +1,25 @@
 {
-  "name": "coin-cli",
+  "name": "@cobook/cli",
   "version": "1.0.0",
   "description": "",
-  "homepage": "https://github.com/yjl9903/Coin#readme",
+  "homepage": "https://github.com/yjl9903/CoBook#readme",
   "bugs": {
-    "url": "https://github.com/yjl9903/Coin/issues"
+    "url": "https://github.com/yjl9903/CoBook/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/yjl9903/Coin.git"
+    "url": "git+https://github.com/yjl9903/CoBook.git"
   },
   "license": "MIT",
   "author": "XLor",
   "main": "dist/index.js",
   "bin": {
-    "coin": "./coin.mjs"
+    "cobook": "./cobook.mjs"
   },
   "files": [
     "app",
     "dist",
-    "coin.mjs"
+    "cobook.mjs"
   ],
   "scripts": {
     "build": "tsup-node src/cli.ts --format cjs --splitting"

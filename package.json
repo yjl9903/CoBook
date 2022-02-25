@@ -1,19 +1,19 @@
 {
   "private": "true",
-  "homepage": "https://github.com/yjl9903/Coin#readme",
+  "homepage": "https://github.com/yjl9903/CoBook#readme",
   "bugs": {
-    "url": "https://github.com/yjl9903/Coin/issues"
+    "url": "https://github.com/yjl9903/CoBook/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/yjl9903/Coin.git"
+    "url": "git+https://github.com/yjl9903/CoBook.git"
   },
   "license": "MIT",
   "author": "XLor",
   "scripts": {
-    "app": "coin build",
+    "app": "cobook build",
     "build": "pnpm run build --filter ./packages",
-    "dev": "coin dev --host",
+    "dev": "cobook dev --host",
     "format": "prettier --write packages/**/*.{ts,js,vue} --ignore-path .gitignore",
     "publish": "zx ./scripts/publish.mjs"
   },
@@ -31,7 +31,7 @@
     ]
   },
   "devDependencies": {
-    "coin-cli": "workspace:*",
+    "@cobook/cli": "workspace:*",
     "husky": "4.3.7",
     "lint-staged": "^12.3.4",
     "pnpm": "^6.31.0",

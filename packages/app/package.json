@@ -1,5 +1,5 @@
 {
-  "name": "coin-app",
+  "name": "@cobook/client",
   "version": "0.0.0",
   "private": true,
   "scripts": {

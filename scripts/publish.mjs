@@ -6,6 +6,11 @@ await fs.copy('./packages/app', './packages/cli/app', {
   }
 });
 
+await fs.copy('./packages/worker', './packages/cli/worker/dist');
+
 await $`pnpm publish -r --access public`;
 
 await fs.remove('./packages/cli/app');
+
+
+await fs.remove('./packages/cli/worker');

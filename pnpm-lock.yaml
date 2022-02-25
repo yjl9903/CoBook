@@ -4,7 +4,7 @@ importers:
 
   .:
     specifiers:
-      coin-cli: workspace:*
+      '@cobook/cli': workspace:*
       husky: 4.3.7
       lint-staged: ^12.3.4
       pnpm: ^6.31.0
@@ -12,7 +12,7 @@ importers:
       typescript: ^4.5.4
       zx: ^5.1.0
     devDependencies:
-      coin-cli: link:packages/cli
+      '@cobook/cli': link:packages/cli
       husky: 4.3.7
       lint-staged: 12.3.4
       pnpm: 6.31.0
@@ -74,6 +74,23 @@ importers:
       vue-router: 4.0.12_vue@3.2.31
       workbox-window: 6.4.2
     devDependencies:
+      tsup: 5.11.13_typescript@4.5.5
+
+  packages/worker:
+    specifiers:
+      '@cloudflare/workers-types': ^3.4.0
+      '@types/node': ^17.0.21
+      '@types/service-worker-mock': ^2.0.1
+      '@vercel/ncc': ^0.33.3
+      itty-router: ^2.4.10
+      tsup: ^5.11.13
+    dependencies:
+      itty-router: 2.4.10
+    devDependencies:
+      '@cloudflare/workers-types': 3.4.0
+      '@types/node': 17.0.21
+      '@types/service-worker-mock': 2.0.1
+      '@vercel/ncc': 0.33.3
       tsup: 5.11.13_typescript@4.5.5
 
 packages:
@@ -1120,6 +1137,10 @@ packages:
       '@babel/helper-validator-identifier': 7.16.7
       to-fast-properties: 2.0.0
 
+  /@cloudflare/workers-types/3.4.0:
+    resolution: {integrity: sha512-i/3czUrt6YqbOWl44OtIqd0cSZvEVXp/1oD/DZylC4PHZL3q/BhbamdEVeVhc/HPk4iD/7MZ2HGaIMO4Z4b12A==}
+    dev: true
+
   /@emmetio/abbreviation/2.2.3:
     resolution: {integrity: sha512-87pltuCPt99aL+y9xS6GPZ+Wmmyhll2WXH73gG/xpGcQ84DRnptBsI2r0BeIQ0EB/SQTOe2ANPqFqj3Rj5FOGA==}
     dependencies:
@@ -1252,6 +1273,9 @@ packages:
   /@types/node/17.0.18:
     resolution: {integrity: sha512-eKj4f/BsN/qcculZiRSujogjvp5O/k4lOW5m35NopjZM/QwLOR075a8pJW5hD+Rtdm2DaCVPENS6KtSQnUD6BA==}
 
+  /@types/node/17.0.21:
+    resolution: {integrity: sha512-DBZCJbhII3r90XbQxI8Y9IjjiiOGlZ0Hr32omXIZvwwZ7p4DMMXGrKXVyPfuoBOri9XNtL0UK69jYIBIsRX3QQ==}
+
   /@types/parse-json/4.0.0:
     resolution: {integrity: sha512-//oorEZjL6sbPcKUaCdIGlIUeH26mgzimjBB77G6XRgnDl/L5wOnpyBGRe/Mmf5CVW3PwEBE1NjiMZ/ssFh4wA==}
     dev: true
@@ -1259,7 +1283,11 @@ packages:
   /@types/resolve/1.17.1:
     resolution: {integrity: sha512-yy7HuzQhj0dhGpD8RLXSZWEkLsV9ibvxvi6EiJ3bkqLAO1RGo0WbkWQiwpRlSFymTJRz0d3k5LM3kkx8ArDbLw==}
     dependencies:
-      '@types/node': 17.0.18
+      '@types/node': 17.0.21
+
+  /@types/service-worker-mock/2.0.1:
+    resolution: {integrity: sha512-LqaP0QmgppRF7YEaqx4amoazHNXaX5bIFDAu62LnWIc5ku0HbgqlPKroQstAu8WsdmWIqEfI9VGlP8Skkq+m5A==}
+    dev: true
 
   /@types/trusted-types/2.0.2:
     resolution: {integrity: sha512-F5DIZ36YVLE+PN+Zwws4kJogq47hNgX3Nx6WyDJ3kcplxyke3XIzB8uK5n/Lpm1HBsbGzd6nmGehL8cPekP+Tg==}
@@ -1277,6 +1305,11 @@ packages:
   /@vant/use/1.3.5:
     resolution: {integrity: sha512-S4rfMQT+71quUbSY9sF7vJTEADVWqHxn8zUbpEl4vzI2CCJx67ri/ZHV911LpXIaZVgSSGPLE5xLV8javmbU0Q==}
     dev: false
+
+  /@vercel/ncc/0.33.3:
+    resolution: {integrity: sha512-JGZ11QV+/ZcfudW2Cz2JVp54/pJNXbsuWRgSh2ZmmZdQBKXqBtIGrwI1Wyx8nlbzAiEFe7FHi4K1zX4//jxTnQ==}
+    hasBin: true
+    dev: true
 
   /@vitejs/plugin-vue/2.2.2_vite@2.8.4+vue@3.2.31:
     resolution: {integrity: sha512-3C0s45VOwIFEDU+2ownJOpb0zD5fnjXWaHVOLID2R1mYOlAx3doNBFnNbVjaZvpke/L7IdPJXjpyYpXZToDKig==}
@@ -2692,6 +2725,10 @@ packages:
   /isexe/2.0.0:
     resolution: {integrity: sha1-6PvzdNxVb/iUehDcsFctYz8s+hA=}
     dev: true
+
+  /itty-router/2.4.10:
+    resolution: {integrity: sha512-6z8UO4MoJRCdgLRVU++L6QTHJwU2pCAYFM8+9HjjcneRM5DqYyF5g6tsgIw24xXLFJlpvVrIzVzhjn862ZQZcQ==}
+    dev: false
 
   /jake/10.8.2:
     resolution: {integrity: sha512-eLpKyrfG3mzvGE2Du8VoPbeSkRry093+tyNjdYaBbJS9v17knImYGNXQCUV0gLxQtF82m3E8iRb/wdSQZLoq7A==}

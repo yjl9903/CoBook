@@ -1,4 +1,6 @@
-# Coin
+# CoBook
+
+**Co**in **Book**.
 
 ## License
 
