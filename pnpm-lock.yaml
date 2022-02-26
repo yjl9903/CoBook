@@ -137,6 +137,7 @@ importers:
   packages/worker:
     specifiers:
       '@cloudflare/workers-types': ^3.4.0
+      '@cobook/shared': workspace:*
       '@types/node': ^17.0.21
       '@types/service-worker-mock': ^2.0.1
       itty-router: ^2.4.10
@@ -145,6 +146,7 @@ importers:
       webpack: ^5.69.1
       webpack-cli: ^4.9.2
     dependencies:
+      '@cobook/shared': link:../shared
       itty-router: 2.4.10
     devDependencies:
       '@cloudflare/workers-types': 3.4.0
