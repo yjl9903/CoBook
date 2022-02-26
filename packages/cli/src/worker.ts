@@ -3,7 +3,7 @@ import path from 'path';
 import { writeFileSync, unlinkSync } from 'fs';
 import format from 'date-fns/format';
 import { Miniflare } from 'miniflare';
-import json2toml from 'json2toml';
+import { stringify } from '@iarna/toml';
 import execa from 'execa';
 import { debug as createDebug } from 'debug';
 
@@ -119,7 +119,8 @@ export async function initWorker(port: number, option: CoBookCliOption) {
 
 export async function publishWorker(option: CoBookCliOption) {
   const wrangler = resolveWorkerOption(option);
-  const toml = json2toml(wrangler);
+  // @ts-ignore
+  const toml = stringify(wrangler);
   const wranglerPath = path.join(option.workerRoot, 'wrangler.toml');
   writeFileSync(wranglerPath, toml, 'utf-8');
   debug(toml);

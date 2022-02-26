@@ -28,6 +28,7 @@ importers:
     specifiers:
       '@cobook/shared': workspace:*
       '@cobook/vite-plugin': workspace:*
+      '@iarna/toml': ^2.2.5
       '@miniflare/shared': ^2.3.0
       '@types/debug': ^4.1.7
       '@types/js-yaml': ^4.0.5
@@ -36,7 +37,6 @@ importers:
       debug: ^4.3.3
       execa: ^5.1.1
       js-yaml: ^4.1.0
-      json2toml: ^3.0.1
       kolorist: ^1.5.1
       miniflare: ^2.3.0
       tsup: ^5.11.13
@@ -51,12 +51,12 @@ importers:
     dependencies:
       '@cobook/shared': link:../shared
       '@cobook/vite-plugin': link:../vite
+      '@iarna/toml': 2.2.5
       cac: 6.7.12
       date-fns: 2.28.0
       debug: 4.3.3
       execa: 5.1.1
       js-yaml: 4.1.0
-      json2toml: 3.0.1
       kolorist: 1.5.1
       miniflare: 2.3.0
       vant: 3.4.5_vue@3.2.31
@@ -3709,18 +3709,6 @@ packages:
   /json-schema/0.4.0:
     resolution: {integrity: sha512-es94M3nTIfsEPisRafak+HDLfHXnKBhV3vU5eqPcS3flIWqcxJWgXHXiey3YrpaNsanY5ei1VoYEbOzijuq9BA==}
 
-  /json2toml/3.0.1:
-    resolution: {integrity: sha512-HOhLvq7yH2RJxXnqY2WtHXUrUZAuBKByGVijBJnm4BqpF+tZpzR9C0ZxpYwZfvIJqrfzDjHrs73HbCJnsaGKmw==}
-    engines: {node: 12 || 14 || >=16}
-    dependencies:
-      lodash.foreach: 4.5.0
-      lodash.isdate: 4.0.1
-      lodash.isempty: 4.4.0
-      lodash.isplainobject: 4.0.6
-      lodash.keys: 4.2.0
-      strftime: 0.10.1
-    dev: false
-
   /json5/2.2.0:
     resolution: {integrity: sha512-f+8cldu7X/y7RAJurMEJmdoKXGB/X550w2Nr3tTbezL6RwEE/iMcm+tZnXeoZtKuOq6ft8+CqzEkrIgx1fPoQA==}
     engines: {node: '>=6'}
@@ -3851,26 +3839,6 @@ packages:
 
   /lodash.debounce/4.0.8:
     resolution: {integrity: sha1-gteb/zCmfEAF/9XiUVMArZyk168=}
-
-  /lodash.foreach/4.5.0:
-    resolution: {integrity: sha1-Gmo16s5AEoDH8G3d7DUWWrJ+PlM=}
-    dev: false
-
-  /lodash.isdate/4.0.1:
-    resolution: {integrity: sha1-NaVDZzuddhEN5BFLMsxXcEin82Y=}
-    dev: false
-
-  /lodash.isempty/4.4.0:
-    resolution: {integrity: sha1-b4bL7di+TsmHvpqvM8loTbGzHn4=}
-    dev: false
-
-  /lodash.isplainobject/4.0.6:
-    resolution: {integrity: sha1-fFJqUtibRcRcxpC4gWO+BJf1UMs=}
-    dev: false
-
-  /lodash.keys/4.2.0:
-    resolution: {integrity: sha1-oIYCrBLk+4P5H8H7ejYKTZujUgU=}
-    dev: false
 
   /lodash.sortby/4.7.0:
     resolution: {integrity: sha1-7dFMgk4sycHgsKG0K7UhBRakJDg=}
@@ -4804,11 +4772,6 @@ packages:
   /streamsearch/0.1.2:
     resolution: {integrity: sha1-gIudDlb8Jz2Am6VzOOkpkZoanxo=}
     engines: {node: '>=0.8.0'}
-    dev: false
-
-  /strftime/0.10.1:
-    resolution: {integrity: sha512-nVvH6JG8KlXFPC0f8lojLgEsPA18lRpLZ+RrJh/NkQV2tqOgZfbas8gcU8SFgnnqR3rWzZPYu6N2A3xzs/8rQg==}
-    engines: {node: '>=0.2.0'}
     dev: false
 
   /string-argv/0.3.1:

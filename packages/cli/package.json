@@ -27,12 +27,12 @@
   "dependencies": {
     "@cobook/shared": "workspace:*",
     "@cobook/vite-plugin": "workspace:*",
+    "@iarna/toml": "^2.2.5",
     "cac": "^6.7.12",
     "date-fns": "^2.28.0",
     "debug": "^4.3.3",
     "execa": "^5.1.1",
     "js-yaml": "^4.1.0",
-    "json2toml": "^3.0.1",
     "kolorist": "^1.5.1",
     "miniflare": "^2.3.0",
     "vant": "^3.4.5",
