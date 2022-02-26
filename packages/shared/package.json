@@ -27,6 +27,7 @@
     "build": "tsup-node src/index.ts --format esm,cjs --splitting --dts"
   },
   "dependencies": {
+    "axios": "^0.26.0",
     "debug": "^4.3.3"
   },
   "devDependencies": {

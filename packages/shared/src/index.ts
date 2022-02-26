@@ -1,5 +1,7 @@
 import { RawCoBookConfig, Template, ColorItem, AccountItem } from './types';
 
+export * from './client';
+
 export { RawCoBookConfig, Template, ColorItem, AccountItem };
 
 export function transformConfig(config?: RawCoBookConfig) {
@@ -13,6 +15,8 @@ export function transformConfig(config?: RawCoBookConfig) {
   );
 
   return {
+    name: config?.name ?? 'CoBook',
+    baseURL: config?.wrangler?.url ?? '',
     template: config?.template ?? [],
     tags: transfromColorItem(tags),
     categories: transfromColorItem(categories)

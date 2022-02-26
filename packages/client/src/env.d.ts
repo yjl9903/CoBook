@@ -16,5 +16,9 @@ declare module 'virtual:pwa-register' {
 declare module '~cobook' {
   import type { Template } from '@cobook/shared';
 
+  const name: string;
+
+  const baseURL: string;
+
   const template: Template[];
 }

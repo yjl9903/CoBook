@@ -35,8 +35,7 @@ cli
     const vitePort = await findFreePort(rawOptions.port);
     const workerPort = await findFreePort(vitePort + 1);
 
-    const worker = await initWorker(options);
-    worker.setOptions({ port: workerPort, watch: true });
+    const worker = await initWorker(workerPort, options);
 
     const viteServer = await createViteServer(options, rawOptions);
 

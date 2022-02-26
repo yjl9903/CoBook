@@ -1,22 +1,25 @@
 import { Router } from 'itty-router';
+import { makeErrorResponse } from './utils';
 
 export function createRouter(builder: (router: Router<Request>) => void) {
   const router = Router();
 
   router.all('*', (req: Request) => {
-    const pass = req.headers.get('Authorization');
-    if (!AUTH) {
-      console.log('You must set AUTH!');
-      return new Response('Unauthorized', { status: 401 });
-    } else if (pass !== AUTH) {
-      return new Response('Unauthorized', { status: 401 });
+    if (req.method !== 'OPTIONS') {
+      const pass = req.headers.get('Authorization');
+      if (!AUTH) {
+        console.log('You must set AUTH!');
+        return makeErrorResponse('Unauthorized', {}, { status: 401 });
+      } else if (pass !== AUTH) {
+        return makeErrorResponse('Unauthorized', {}, { status: 401 });
+      }
     }
   });
 
   builder(router);
 
   router.options('*', () => addCorsHeaders(new Response(undefined, { status: 204 })));
-  router.all('*', () => new Response('Not Found', { status: 404 }));
+  router.all('*', () => makeErrorResponse('Not Found', {}, { status: 404 }));
 
   return router;
 }
@@ -28,6 +31,6 @@ function addCorsHeaders(response: Response) {
     'Access-Control-Allow-Headers',
     'authorization, referer, origin, content-type'
   );
-  response.headers.set('Access-Control-Max-Age', '3600');
+  response.headers.set('Access-Control-Max-Age', '86400');
   return response;
 }

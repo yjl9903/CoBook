@@ -6,6 +6,11 @@ import vue from '@vitejs/plugin-vue';
 import { createStyleImportPlugin, VantResolve } from 'vite-plugin-style-import';
 import { createCoBookPlugin } from '@cobook/vite-plugin';
 
+import Unocss from 'unocss/vite';
+import presetUno from '@unocss/preset-uno';
+import presetAttributify from '@unocss/preset-attributify';
+import transformerDirective from '@unocss/transformer-directives';
+
 const __APP_NAME__ = 'Coin Book';
 
 const __DESCRIPTION__ = 'Yet another account record...';
@@ -27,7 +32,7 @@ const __ICON__ = [
 // https://vitejs.dev/config/
 export default defineConfig({
   define: {
-    __FingerprintJS__: `"${process.env.FingerprintJS}"`
+    __FingerprintJS__: process.env.FingerprintJS && `"${process.env.FingerprintJS}"`
   },
   resolve: {
     alias: {
@@ -76,6 +81,9 @@ export default defineConfig({
           }
         ]
       }
+    }),
+    Unocss({
+      presets: [presetUno(), presetAttributify(), transformerDirective()]
     }),
     createCoBookPlugin()
   ]

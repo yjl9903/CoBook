@@ -1,17 +1,26 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 import { NavBar, Icon, Popup } from 'vant';
+import { useRoute } from 'vue-router';
+
+import { name } from '~cobook';
+
+const route = useRoute();
+
+const isLogin = computed(() => {
+  return route.name === 'Login';
+});
 
 const show = ref(false);
 </script>
 
 <template>
-  <nav-bar fixed placeholder>
+  <nav-bar v-if="!isLogin" fixed placeholder>
     <template #left>
       <Icon name="ellipsis" color="black" @click="show = true" />
     </template>
     <template #title>
-      <span style="font-weight: bold">Coin</span>
+      <span style="font-weight: bold">{{ name }}</span>
     </template>
     <template #right>
       <Icon name="setting-o" color="black" />
@@ -24,7 +33,13 @@ const show = ref(false);
 </template>
 
 <style>
+html {
+  height: 100%;
+}
 body {
-  background: rgb(247, 247, 247);
+  height: 100%;
+}
+#app {
+  height: 100%;
 }
 </style>

@@ -1,13 +1,15 @@
 import type { WranglerConfig } from '@miniflare/shared';
 
 export interface RawCoBookConfig {
+  name: string;
+
   template?: Template[];
 
   tags?: Array<string | ColorItem>;
 
   categories?: Array<string | ColorItem>;
 
-  wrangler?: WranglerConfig & { kv: string };
+  wrangler?: WranglerConfig & { url: string; kv: string };
 }
 
 export interface ColorItem {

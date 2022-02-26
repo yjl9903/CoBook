@@ -1,3 +1,5 @@
+name: Coin Book
+
 template:
   - name: Breakfast
     icon: /img/breakfast.svg
@@ -32,5 +34,7 @@ tags:
 
 wrangler:
   account_id: 7cbfb60ad7052f0d8cf590a51e024987
+  name: cobook-worker
   workers_dev: true
   kv: 2c3549bef88b4f029969582f413602ec
+  url: https://cobook-worker.yjl9903.workers.dev

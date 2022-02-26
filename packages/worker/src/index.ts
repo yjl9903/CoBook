@@ -1,9 +1,10 @@
 import { createRouter } from './router';
 import { createAccount, listAccounts } from './service';
+import { makeResponse } from './utils';
 
 const router = createRouter((router) => {
   router.get('/', () => {
-    return new Response('Hello, this is CoBook.');
+    return makeResponse('Hello, this is CoBook.');
   });
 
   router.get('/accounts', async () => {

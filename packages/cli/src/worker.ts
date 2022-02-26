@@ -37,6 +37,9 @@ export function resolveWorkerOption(option: CoBookCliOption): ResolvedWranglerCo
   if (!wrangler?.kv) {
     throw new Error(`You must set kv in wrangler!`);
   }
+  if (!wrangler?.url) {
+    throw new Error(`You must set url in wrangler!`);
+  }
   if (!process.env.AUTH) {
     if (option.mode === 'dev') {
       process.env.AUTH = '123456';
@@ -98,13 +101,16 @@ export function resolveWorkerOption(option: CoBookCliOption): ResolvedWranglerCo
   return config;
 }
 
-export async function initWorker(option: CoBookCliOption) {
+export async function initWorker(port: number, option: CoBookCliOption) {
   const wrangler = resolveWorkerOption(option);
+  option.wrangler!.url = `http://localhost:${port}`;
 
   const mf = new Miniflare({
     scriptPath: path.join(option.workerRoot, 'index.js'),
     bindings: wrangler.vars,
     kvNamespaces: [DefaultKVNamespace],
+    port,
+    watch: true,
     ...wrangler
   });
 

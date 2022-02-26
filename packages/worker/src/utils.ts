@@ -2,11 +2,16 @@ interface ResponseOption {
   status: number;
 }
 
-export function makeResponse<T extends object>(resp: T, option: ResponseOption = { status: 200 }) {
-  return new Response(JSON.stringify({ ...resp, status: 'OK' }), {
+export function makeResponse<T extends object>(
+  resp: T | string,
+  option: ResponseOption = { status: 200 }
+) {
+  const body = typeof resp === 'string' ? { message: resp } : resp;
+  return new Response(JSON.stringify({ ...body, status: 'OK' }), {
     status: option.status,
     headers: {
-      'content-type': 'application/json'
+      'content-type': 'application/json',
+      'Access-Control-Allow-Origin': '*'
     }
   });
 }
