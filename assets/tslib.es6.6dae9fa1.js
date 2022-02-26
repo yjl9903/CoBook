@@ -1,0 +1,14 @@
+/*! *****************************************************************************
+Copyright (c) Microsoft Corporation.
+
+Permission to use, copy, modify, and/or distribute this software for any
+purpose with or without fee is hereby granted.
+
+THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
+REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY
+AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,
+INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM
+LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
+OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
+PERFORMANCE OF THIS SOFTWARE.
+***************************************************************************** */var y=function(){return y=Object.assign||function(u){for(var e,r=1,a=arguments.length;r<a;r++){e=arguments[r];for(var t in e)Object.prototype.hasOwnProperty.call(e,t)&&(u[t]=e[t])}return u},y.apply(this,arguments)};function b(l,u){var e={};for(var r in l)Object.prototype.hasOwnProperty.call(l,r)&&u.indexOf(r)<0&&(e[r]=l[r]);if(l!=null&&typeof Object.getOwnPropertySymbols=="function")for(var a=0,r=Object.getOwnPropertySymbols(l);a<r.length;a++)u.indexOf(r[a])<0&&Object.prototype.propertyIsEnumerable.call(l,r[a])&&(e[r[a]]=l[r[a]]);return e}function h(l,u,e,r){function a(t){return t instanceof e?t:new e(function(f){f(t)})}return new(e||(e=Promise))(function(t,f){function i(c){try{n(r.next(c))}catch(s){f(s)}}function o(c){try{n(r.throw(c))}catch(s){f(s)}}function n(c){c.done?t(c.value):a(c.value).then(i,o)}n((r=r.apply(l,u||[])).next())})}function g(l,u){var e={label:0,sent:function(){if(t[0]&1)throw t[1];return t[1]},trys:[],ops:[]},r,a,t,f;return f={next:i(0),throw:i(1),return:i(2)},typeof Symbol=="function"&&(f[Symbol.iterator]=function(){return this}),f;function i(n){return function(c){return o([n,c])}}function o(n){if(r)throw new TypeError("Generator is already executing.");for(;e;)try{if(r=1,a&&(t=n[0]&2?a.return:n[0]?a.throw||((t=a.return)&&t.call(a),0):a.next)&&!(t=t.call(a,n[1])).done)return t;switch(a=0,t&&(n=[n[0]&2,t.value]),n[0]){case 0:case 1:t=n;break;case 4:return e.label++,{value:n[1],done:!1};case 5:e.label++,a=n[1],n=[0];continue;case 7:n=e.ops.pop(),e.trys.pop();continue;default:if(t=e.trys,!(t=t.length>0&&t[t.length-1])&&(n[0]===6||n[0]===2)){e=0;continue}if(n[0]===3&&(!t||n[1]>t[0]&&n[1]<t[3])){e.label=n[1];break}if(n[0]===6&&e.label<t[1]){e.label=t[1],t=n;break}if(t&&e.label<t[2]){e.label=t[2],e.ops.push(n);break}t[2]&&e.ops.pop(),e.trys.pop();continue}n=u.call(l,e)}catch(c){n=[6,c],a=0}finally{r=t=0}if(n[0]&5)throw n[1];return{value:n[0]?n[1]:void 0,done:!0}}}function w(){for(var l=0,u=0,e=arguments.length;u<e;u++)l+=arguments[u].length;for(var r=Array(l),a=0,u=0;u<e;u++)for(var t=arguments[u],f=0,i=t.length;f<i;f++,a++)r[a]=t[f];return r}export{h as _,g as a,w as b,y as c,b as d};
