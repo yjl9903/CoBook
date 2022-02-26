@@ -1,14 +1,14 @@
 import path from 'path';
 import { cac } from 'cac';
 import { blue, bold, cyan, dim, lightRed, lightYellow } from 'kolorist';
-import { build, createServer } from 'vite';
 import { debug as createDebug } from 'debug';
 
 import { version } from '../package.json';
 
-import { RawBuildOptions, RawDevOptions, resolveOptions } from './options';
+import { RawBuildOptions, RawDevOptions, resolveOption } from './options';
 import { findFreePort, findRemoteHost } from './utils';
 import { initWorker } from './worker';
+import { buildVite, createViteServer } from './vite';
 
 const cli = cac('cobook');
 
@@ -21,15 +21,8 @@ cli
   })
   .option('--outDir <dir>', 'output directory', { default: path.join(process.cwd(), './dist') })
   .action(async (root: string | undefined, rawOptions: RawBuildOptions) => {
-    const options = await resolveOptions(root);
-
-    await build({
-      root: options.clientRoot,
-      build: {
-        emptyOutDir: rawOptions.emptyOutDir,
-        outDir: rawOptions.outDir
-      }
-    });
+    const options = await resolveOption(root);
+    await buildVite(options, rawOptions);
   });
 
 cli
@@ -37,58 +30,36 @@ cli
   .option('--host', 'specify hostname')
   .option('--port <port>', 'port to listen to', { default: 3000 })
   .action(async (root: string | undefined, rawOptions: RawDevOptions) => {
-    const options = await resolveOptions(root);
-
-    const port = await findFreePort(rawOptions.port);
-
-    const server = await createServer({
-      root: options.clientRoot,
-      logLevel: 'warn'
-    });
-
-    await server.listen(port);
-
-    printDevInfo(port, rawOptions.host);
-  });
-
-cli
-  .command('worker [root]')
-  .option('--port <port>', 'port to listen to', { default: 5000 })
-  .action(async (root: string | undefined, rawOptions: RawDevOptions) => {
-    const options = await resolveOptions(root);
+    const options = await resolveOption(root);
+    
+    const vitePort = await findFreePort(rawOptions.port);
+    const viteServer = await createViteServer(options, rawOptions);
 
     const worker = await initWorker(options);
+    const workerPort = await findFreePort(vitePort + 1);
+    worker.setOptions({ port: workerPort, watch: true });
 
-    const port = await findFreePort(rawOptions.port);
-
-    worker.setOptions({ port, watch: true });
-
+    await viteServer.listen(vitePort);
     await worker.startServer();
 
-    printDevInfo(port, false, true);
+    printDevInfo(vitePort, workerPort, rawOptions.host);
   });
 
-function printDevInfo(port: number, host?: string | boolean, worker = false) {
+function printDevInfo(vitePort: number, workerPort: number, host?: string | boolean) {
   console.log();
-  console.log(`${bold('  CoBook')} ${worker ? lightYellow('Worker ') : ''}${cyan(`v${version}`)}`);
+  console.log(`${bold('  CoBook')} ${cyan(`v${version}`)}`);
+  console.log();
 
-  if (port) {
-    console.log();
-
-    if (!worker) {
-      console.log(`${dim('  Local    ')} > ${cyan(`http://localhost:${bold(port)}/`)}`);
-    } else {
-      console.log(`${dim('  Worker   ')} > ${cyan(`http://localhost:${bold(port)}/`)}`);
+  console.log(`${dim('  Local    ')} > ${cyan(`http://localhost:${bold(vitePort)}/`)}`);
+  if (host) {
+    for (const { address } of findRemoteHost()) {
+      console.log(`${dim('  Remote   ')} > ${blue(`http://${address}:${vitePort}/`)}`);
     }
-
-    if (host) {
-      for (const { address } of findRemoteHost()) {
-        console.log(`${dim('  Remote   ')} > ${blue(`http://${address}:${port}/`)}`);
-      }
-    } else if (!worker) {
-      console.log(`${dim('  Remote   ')} > ${dim('pass --host to enable')}`);
-    }
+  } else {
+    console.log(`${dim('  Remote   ')} > ${dim('pass --host to enable')}`);
   }
+
+  console.log(`${dim('  Worker   ')} > ${cyan(`http://localhost:${bold(workerPort)}/`)}`);
 
   console.log();
 }

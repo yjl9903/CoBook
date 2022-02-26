@@ -22,7 +22,7 @@ export interface RawDevOptions {
   host: boolean;
 }
 
-export async function resolveOptions(root: string = process.cwd()): Promise<CoBookOption> {
+export async function resolveOption(root: string = process.cwd()): Promise<CoBookOption> {
   root = path.resolve(process.cwd(), root);
   debug(`root      : ${root}`);
   const clientRoot = await getClientRoot(root);

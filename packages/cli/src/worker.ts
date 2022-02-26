@@ -1,14 +1,14 @@
 import type { WranglerConfig } from '@miniflare/shared';
 import path from 'path';
 import format from 'date-fns/format';
-import { debug as createDebug } from 'debug';
 import { Miniflare } from 'miniflare';
+import { debug as createDebug } from 'debug';
 
 import type { CoBookOption } from './types';
 
 const debug = createDebug('cobook:cli');
 
-export async function initWorker(option: CoBookOption) {
+export async function resolveWorkerOption(option: CoBookOption) {
   const wrangler = option.wrangler;
 
   if (!wrangler?.account_id) {
@@ -39,6 +39,12 @@ export async function initWorker(option: CoBookOption) {
   }
 
   debug(config);
+
+  return config;
+}
+
+export async function initWorker(option: CoBookOption) {
+  const config = resolveWorkerOption(option);
 
   const mf = new Miniflare({
     scriptPath: path.join(option.workerRoot, 'index.js'),
