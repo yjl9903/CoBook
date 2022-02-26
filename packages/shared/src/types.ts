@@ -1,6 +1,6 @@
 import type { WranglerConfig } from '@miniflare/shared';
 
-export interface RawCoBookOption {
+export interface RawCoBookConfig {
   template?: Template[];
 
   tags?: Array<string | ColorItem>;

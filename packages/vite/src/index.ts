@@ -1,24 +1,17 @@
 import type { Plugin } from 'vite';
 import { debug as createDebug } from 'debug';
-import { RawCoBookOption } from '@cobook/shared';
+import { RawCoBookConfig, transformConfig } from '@cobook/shared';
 
 const debug = createDebug('cobook:vite');
 
 export function createCoBookPlugin(): Plugin {
-  let config: Omit<Required<RawCoBookOption>, 'wrangler'> | undefined = undefined;
+  let config: Omit<Required<RawCoBookConfig>, 'wrangler'>;
 
   return {
     name: 'cobook',
     configResolved(resolvedConfig) {
       // @ts-ignore
-      config = resolvedConfig.cobook;
-      if (!config) {
-        config = {
-          template: [],
-          categories: [],
-          tags: []
-        };
-      }
+      config = transformConfig(resolvedConfig.cobook);
       debug(config);
     },
     resolveId(id) {

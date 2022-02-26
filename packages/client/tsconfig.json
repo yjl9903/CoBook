@@ -14,7 +14,11 @@
       "esnext",
       "dom"
     ],
-    "forceConsistentCasingInFileNames": true
+    "forceConsistentCasingInFileNames": true,
+    "paths": {
+      "@cobook/shared": ["../shared/src/index.ts"],
+      "@cobook/vite": ["../vite/src/index.ts"]
+    }
   },
   "include": [
     "src/**/*.ts",

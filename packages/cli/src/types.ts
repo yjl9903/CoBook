@@ -1,6 +1,6 @@
-import type { RawCoBookOption } from '@cobook/shared';
+import type { RawCoBookConfig } from '@cobook/shared';
 
-export interface CoBookOption extends RawCoBookOption {
+export interface CoBookCliOption extends RawCoBookConfig {
   mode: 'dev' | 'prod';
 
   root: string;
