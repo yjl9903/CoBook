@@ -8,9 +8,7 @@ export async function createViteServer(option: CoBookOption, rawOptions: RawDevO
   const server = await createServer({
     root: option.clientRoot,
     logLevel: 'warn',
-    plugins: [
-      createPlugin(option)
-    ]
+    plugins: [createPlugin(option)]
   });
 
   return server;
@@ -23,9 +21,7 @@ export async function buildVite(option: CoBookOption, rawOptions: RawBuildOption
       emptyOutDir: rawOptions.emptyOutDir,
       outDir: rawOptions.outDir
     },
-    plugins: [
-      createPlugin(option)
-    ]
+    plugins: [createPlugin(option)]
   });
 }
 
@@ -36,5 +32,5 @@ function createPlugin(option: CoBookOption): Plugin {
       // @ts-ignore
       config.cobook = option;
     }
-  }
+  };
 }

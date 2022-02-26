@@ -8,6 +8,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@cobook/shared": "workspace:*",
     "@cobook/vite-plugin": "workspace:*",
     "vant": "^3.4.5",
     "vue": "^3.2.25",

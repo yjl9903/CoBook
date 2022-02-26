@@ -29,11 +29,12 @@
   "scripts": {
     "build": "tsup-node src/index.ts --format esm,cjs --splitting --dts"
   },
+  "dependencies": {
+    "@cobook/shared": "workspace:*",
+    "debug": "^4.3.3"
+  },
   "devDependencies": {
     "tsup": "^5.11.13",
     "vite": "^2.8.0"
-  },
-  "dependencies": {
-    "debug": "^4.3.3"
   }
 }

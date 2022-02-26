@@ -75,6 +75,7 @@ importers:
 
   packages/client:
     specifiers:
+      '@cobook/shared': workspace:*
       '@cobook/vite-plugin': workspace:*
       '@vitejs/plugin-vue': ^2.2.0
       consola: ^2.15.3
@@ -89,6 +90,7 @@ importers:
       vue-tsc: ^0.29.8
       workbox-window: ^6.4.2
     dependencies:
+      '@cobook/shared': link:../shared
       '@cobook/vite-plugin': link:../vite
       vant: 3.4.5_vue@3.2.31
       vue: 3.2.31
@@ -117,10 +119,12 @@ importers:
 
   packages/vite:
     specifiers:
+      '@cobook/shared': workspace:*
       debug: ^4.3.3
       tsup: ^5.11.13
       vite: ^2.8.0
     dependencies:
+      '@cobook/shared': link:../shared
       debug: 4.3.3
     devDependencies:
       tsup: 5.11.13_typescript@4.5.5

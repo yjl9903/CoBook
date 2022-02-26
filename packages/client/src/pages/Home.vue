@@ -1,9 +1,12 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { Button, Field, NumberKeyboard, CellGroup, Cell, Grid, GridItem } from 'vant';
+import { template } from '~cobook';
 
 const show = ref(false);
 const value = ref('');
+
+console.log(template);
 </script>
 
 <template>

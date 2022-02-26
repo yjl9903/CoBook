@@ -10,3 +10,9 @@ declare module '*.vue' {
 declare module 'virtual:pwa-register' {
   const registerSW: (option: any) => {};
 }
+
+declare module '~cobook' {
+  import type { Template } from '@cobook/shared';
+
+  const template: Template[];
+}
