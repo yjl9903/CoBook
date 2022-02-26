@@ -77,6 +77,8 @@ importers:
     specifiers:
       '@cobook/shared': workspace:*
       '@cobook/vite-plugin': workspace:*
+      '@fingerprintjs/fingerprintjs': ^3.3.3
+      '@fingerprintjs/fingerprintjs-pro': ^3.5.5
       '@vitejs/plugin-vue': ^2.2.0
       consola: ^2.15.3
       typescript: ^4.5.4
@@ -92,6 +94,8 @@ importers:
     dependencies:
       '@cobook/shared': link:../shared
       '@cobook/vite-plugin': link:../vite
+      '@fingerprintjs/fingerprintjs': 3.3.3
+      '@fingerprintjs/fingerprintjs-pro': 3.5.5
       vant: 3.4.5_vue@3.2.31
       vue: 3.2.31
       vue-router: 4.0.12_vue@3.2.31
@@ -1231,6 +1235,25 @@ packages:
   /@emmetio/scanner/1.0.0:
     resolution: {integrity: sha512-8HqW8EVqjnCmWXVpqAOZf+EGESdkR27odcMMMGefgKXtar00SoYNSryGv//TELI4T3QFsECo78p+0lmalk/CFA==}
     dev: true
+
+  /@fingerprintjs/fingerprintjs-pro/3.5.5:
+    resolution: {integrity: sha512-55LrMM9tDholII1zXNvuoem2htD/3OinXOaM2IX60s06kB73cKUIMwvs41GI5oiXuoTb8/jt2ZZ+H5fw7OfmvQ==}
+    dependencies:
+      '@fingerprintjs/fingerprintjs': 3.3.1
+      tslib: 2.3.1
+    dev: false
+
+  /@fingerprintjs/fingerprintjs/3.3.1:
+    resolution: {integrity: sha512-rs9fCfINXeYO1XRTbZ/cXFSyRknyoZSwLNypO5Kf7C/o0g7mBpIDKVzJW3UsKEh+YybCS3wzaOK3z9PxtLiXaw==}
+    dependencies:
+      tslib: 2.3.1
+    dev: false
+
+  /@fingerprintjs/fingerprintjs/3.3.3:
+    resolution: {integrity: sha512-HH6KqZnopF3NIXypYG4f2qxoSRmGCSzp81wJMfWjSTtvsX3cAg12RFJcm+a6Az3XadcZUrXKW3p5Dv0wyCUeuA==}
+    dependencies:
+      tslib: 2.3.1
+    dev: false
 
   /@iarna/toml/2.2.5:
     resolution: {integrity: sha512-trnsAYxU3xnS1gPHPyU961coFyLkh4gAD/0zQ5mymY4yOZ+CYvsPqUbOFSw0aDM4y0tV7tiFxL/1XfXPNC6IPg==}

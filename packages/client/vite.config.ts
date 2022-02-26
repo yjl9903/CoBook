@@ -1,3 +1,4 @@
+import { resolve } from 'path';
 import { defineConfig } from 'vite';
 import { VitePWA } from 'vite-plugin-pwa';
 import { createHtmlPlugin } from 'vite-plugin-html';
@@ -25,6 +26,14 @@ const __ICON__ = [
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  define: {
+    __FingerprintJS__: `"${process.env.FingerprintJS}"`
+  },
+  resolve: {
+    alias: {
+      '@': resolve(__dirname, 'src')
+    }
+  },
   plugins: [
     vue(),
     createStyleImportPlugin({

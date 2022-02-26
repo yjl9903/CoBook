@@ -16,6 +16,7 @@
     ],
     "forceConsistentCasingInFileNames": true,
     "paths": {
+      "@/*": ["./src/*"],
       "@cobook/shared": ["../shared/src/index.ts"],
       "@cobook/vite": ["../vite/src/index.ts"]
     }

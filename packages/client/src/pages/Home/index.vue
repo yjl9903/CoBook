@@ -1,10 +1,16 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { Button, Field, NumberKeyboard, CellGroup, Cell, Grid, GridItem } from 'vant';
+import { fingerprint } from '@/logic/fingerprint';
 import { template } from '~cobook';
 
 const show = ref(false);
 const value = ref('');
+
+fingerprint().then((fg) => {
+  console.log(fg.visitorId);
+  console.log(fg);
+});
 
 console.log(template);
 </script>

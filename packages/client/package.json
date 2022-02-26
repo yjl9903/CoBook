@@ -10,6 +10,8 @@
   "dependencies": {
     "@cobook/shared": "workspace:*",
     "@cobook/vite-plugin": "workspace:*",
+    "@fingerprintjs/fingerprintjs": "^3.3.3",
+    "@fingerprintjs/fingerprintjs-pro": "^3.5.5",
     "vant": "^3.4.5",
     "vue": "^3.2.25",
     "vue-router": "4",
