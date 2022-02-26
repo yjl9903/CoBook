@@ -1,6 +1,6 @@
-import { RawCoBookConfig, Template, ColorItem } from './types';
+import { RawCoBookConfig, Template, ColorItem, AccountItem } from './types';
 
-export { RawCoBookConfig, Template, ColorItem };
+export { RawCoBookConfig, Template, ColorItem, AccountItem };
 
 export function transformConfig(config?: RawCoBookConfig) {
   const tags = uniq(

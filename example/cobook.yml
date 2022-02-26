@@ -33,3 +33,4 @@ tags:
 wrangler:
   account_id: 7cbfb60ad7052f0d8cf590a51e024987
   workers_dev: true
+  kv: 2c3549bef88b4f029969582f413602ec

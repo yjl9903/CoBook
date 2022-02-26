@@ -7,7 +7,7 @@ export interface RawCoBookConfig {
 
   categories?: Array<string | ColorItem>;
 
-  wrangler?: WranglerConfig;
+  wrangler?: WranglerConfig & { kv: string };
 }
 
 export interface ColorItem {
@@ -28,4 +28,18 @@ export interface Template {
   amount?: number;
 
   description?: string;
+}
+
+export interface AccountItem {
+  amount: number;
+
+  category: string;
+
+  tags: string[];
+
+  description: string;
+
+  fingerprint: string;
+
+  timestamp: string;
 }

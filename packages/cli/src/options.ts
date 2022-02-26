@@ -3,8 +3,8 @@ import { readFileSync, existsSync } from 'fs';
 import { debug as createDebug } from 'debug';
 import { load } from 'js-yaml';
 
-import type { RawCoBookOption } from '@cobook/shared';
-import type { CoBookOption } from './types';
+import type { RawCoBookConfig } from '@cobook/shared';
+import type { CoBookCliOption } from './types';
 
 const debug = createDebug('cobook:cli');
 
@@ -20,9 +20,9 @@ export interface RawDevOptions {
 }
 
 export async function resolveOption(
-  mode: CoBookOption['mode'],
+  mode: CoBookCliOption['mode'],
   root: string = process.cwd()
-): Promise<CoBookOption> {
+): Promise<CoBookCliOption> {
   root = path.resolve(process.cwd(), root);
   debug(`root      : ${root}`);
   const clientRoot = await getClientRoot(root);
@@ -42,7 +42,7 @@ export async function resolveOption(
   };
 }
 
-function getConfig(root: string): RawCoBookOption {
+function getConfig(root: string): RawCoBookConfig {
   return load(readFileSync(path.join(root, 'cobook.yml'), 'utf-8')) as any;
 }
 

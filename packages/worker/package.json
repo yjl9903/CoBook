@@ -21,6 +21,7 @@
     "build": "webpack"
   },
   "dependencies": {
+    "@cobook/shared": "workspace:*",
     "itty-router": "^2.4.10"
   },
   "devDependencies": {

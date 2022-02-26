@@ -9,10 +9,12 @@ import { debug as createDebug } from 'debug';
 
 import { version } from '../package.json';
 
-import type { CoBookOption } from './types';
+import type { CoBookCliOption } from './types';
 import { isDef } from './utils';
 
 const debug = createDebug('cobook:cli');
+
+const DefaultKVNamespace = 'ACCOUNT';
 
 type Require =
   | 'name'
@@ -26,11 +28,14 @@ type Require =
 type ResolvedWranglerConfig = Required<Pick<WranglerConfig, Require>> &
   Omit<WranglerConfig, Require>;
 
-export function resolveWorkerOption(option: CoBookOption): ResolvedWranglerConfig {
+export function resolveWorkerOption(option: CoBookCliOption): ResolvedWranglerConfig {
   const wrangler = option.wrangler;
 
   if (!wrangler?.account_id) {
     throw new Error(`You must set account_id in wrangler!`);
+  }
+  if (!wrangler?.kv) {
+    throw new Error(`You must set kv in wrangler!`);
   }
   if (!process.env.AUTH) {
     if (option.mode === 'dev') {
@@ -50,7 +55,12 @@ export function resolveWorkerOption(option: CoBookOption): ResolvedWranglerConfi
     vars: {
       AUTH: process.env.AUTH
     },
-    kv_namespaces: [],
+    kv_namespaces: [
+      {
+        binding: DefaultKVNamespace,
+        id: wrangler.kv
+      }
+    ],
     durable_objects: {
       bindings: []
     }
@@ -88,19 +98,20 @@ export function resolveWorkerOption(option: CoBookOption): ResolvedWranglerConfi
   return config;
 }
 
-export async function initWorker(option: CoBookOption) {
+export async function initWorker(option: CoBookCliOption) {
   const wrangler = resolveWorkerOption(option);
 
   const mf = new Miniflare({
     scriptPath: path.join(option.workerRoot, 'index.js'),
     bindings: wrangler.vars,
+    kvNamespaces: [DefaultKVNamespace],
     ...wrangler
   });
 
   return mf;
 }
 
-export async function publishWorker(option: CoBookOption) {
+export async function publishWorker(option: CoBookCliOption) {
   const wrangler = resolveWorkerOption(option);
   const toml = json2toml(wrangler);
   const wranglerPath = path.join(option.workerRoot, 'wrangler.toml');

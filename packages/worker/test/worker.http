@@ -8,5 +8,19 @@ Authorization: {{pass}}
 
 ###
 
-POST {{baseUrl}}/
+POST {{baseUrl}}/account
+Authorization: {{pass}}
+
+{
+  "amount": 10,
+  "category": "Drink",
+  "tags": [],
+  "description": "",
+  "fingerprint": "123",
+  "timestamp": {{$timestamp}}
+}
+
+###
+
+GET {{baseUrl}}/accounts
 Authorization: {{pass}}

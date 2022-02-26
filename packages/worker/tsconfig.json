@@ -14,7 +14,10 @@
     "esModuleInterop": true,
     "types": ["@cloudflare/workers-types"],
     "skipLibCheck": true,
-    "baseUrl": "./"
+    "baseUrl": "./",
+    "paths": {
+      "@cobook/shared": ["../shared/src/index.ts"]
+    }
   },
   "include": ["src/**/*", "bindings.d.ts"],
   "exclude": ["node_modules", "dist"]
