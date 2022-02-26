@@ -33,7 +33,7 @@ console.log(template);
       </cell>
     </cell-group>
     <div style="margin: 16px">
-      <Button round block type="primary" native-type="submit">提交</Button>
+      <Button round block type="success" native-type="submit">记录</Button>
     </div>
     <number-keyboard
       v-model="value"

@@ -18,7 +18,7 @@ const submit = async () => {
   try {
     if (await login(pass.value)) {
       Notify.clear();
-      await router.push({ name: 'Home' });
+      await router.replace({ name: 'Home' });
     } else {
       onError();
     }
