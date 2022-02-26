@@ -25,6 +25,7 @@
     "build": "tsup-node src/cli.ts --format cjs --splitting"
   },
   "dependencies": {
+    "@cobook/shared": "workspace:*",
     "@cobook/vite-plugin": "workspace:*",
     "cac": "^6.7.12",
     "date-fns": "^2.28.0",

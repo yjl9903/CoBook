@@ -1,10 +1,4 @@
-import type { WranglerConfig } from '@miniflare/shared';
-
-export interface RawCoBookOption {
-  template?: Template[];
-
-  wrangler?: WranglerConfig;
-}
+import type { RawCoBookOption } from '@cobook/shared';
 
 export interface CoBookOption extends RawCoBookOption {
   mode: 'dev' | 'prod';
@@ -12,9 +6,4 @@ export interface CoBookOption extends RawCoBookOption {
   clientRoot: string;
 
   workerRoot: string;
-}
-
-export interface Template {
-  name: string;
-  tags: string[];
 }

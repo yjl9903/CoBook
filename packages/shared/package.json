@@ -1,10 +1,7 @@
 {
-  "name": "@cobook/vite-plugin",
+  "name": "@cobook/shared",
   "version": "1.0.0",
   "description": "",
-  "keywords": [
-    "vite-plugin"
-  ],
   "homepage": "https://github.com/yjl9903/CoBook#readme",
   "bugs": {
     "url": "https://github.com/yjl9903/CoBook/issues"
@@ -29,11 +26,11 @@
   "scripts": {
     "build": "tsup-node src/index.ts --format esm,cjs --splitting --dts"
   },
-  "devDependencies": {
-    "tsup": "^5.11.13",
-    "vite": "^2.8.0"
-  },
   "dependencies": {
     "debug": "^4.3.3"
+  },
+  "devDependencies": {
+    "@miniflare/shared": "^2.3.0",
+    "tsup": "^5.11.13"
   }
 }
