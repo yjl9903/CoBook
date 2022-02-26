@@ -1,13 +1,34 @@
 template:
   - name: Breakfast
+    icon: /img/breakfast.svg
+    category: Food
     tags: ['Food', 'Breakfast']
-    price: 10
+    amount: 10
   - name: Lunch
+    icon: /img/lunch.svg
+    category: Food
     tags: ['Food', 'Lunch']
-    price: 10
+    amount: 10
   - name: Dinner
+    icon: /img/dinner.svg
+    category: Food
     tags: ['Food', 'Dinner']
-    price: 10
+    amount: 10
+  - name: Tea
+    icon: /img/tea.svg
+    category: Drink
+    tags: ['Drink']
+
+categories:
+  - Food
+  - Drink
+
+tags:
+  - Food
+  - Drink
+  - Breakfast
+  - Lunch
+  - Dinner
 
 wrangler:
   account_id: 7cbfb60ad7052f0d8cf590a51e024987

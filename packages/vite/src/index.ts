@@ -14,7 +14,9 @@ export function createCoBookPlugin(): Plugin {
       config = resolvedConfig.cobook;
       if (!config) {
         config = {
-          template: []
+          template: [],
+          categories: [],
+          tags: []
         };
       }
       debug(config);

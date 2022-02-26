@@ -3,13 +3,10 @@ import { readFileSync, existsSync } from 'fs';
 import { debug as createDebug } from 'debug';
 import { load } from 'js-yaml';
 
-import type { RawCoBookOption, CoBookOption } from './types';
+import type { RawCoBookOption } from '@cobook/shared';
+import type { CoBookOption } from './types';
 
 const debug = createDebug('cobook:cli');
-
-export interface CommonOptions {
-  root: string;
-}
 
 export interface RawBuildOptions {
   outDir: string;
@@ -38,6 +35,7 @@ export async function resolveOption(
 
   return {
     mode,
+    root,
     clientRoot,
     workerRoot,
     ...config
