@@ -1,10 +1,8 @@
-import { build, createServer } from 'vite'
-import type { CoBookOption } from "./types";
-import { RawBuildOptions, RawDevOptions, resolveOption } from "./options";
+import { build, createServer } from 'vite';
+import type { CoBookOption } from './types';
+import { RawBuildOptions, RawDevOptions, resolveOption } from './options';
 
-export async function resolveViteOption(option: CoBookOption) {
-
-}
+export async function resolveViteOption(option: CoBookOption) {}
 
 export async function createViteServer(option: CoBookOption, rawOptions: RawDevOptions) {
   const server = await createServer({

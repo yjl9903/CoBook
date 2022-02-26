@@ -1,6 +1,10 @@
 import os from 'os';
 import net from 'net';
 
+export function isDef<T>(obj: T | undefined | null): obj is T {
+  return obj !== undefined && obj !== null;
+}
+
 export function findRemoteHost() {
   return Object.values(os.networkInterfaces()).flatMap((v) =>
     (v || []).filter(

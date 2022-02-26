@@ -7,7 +7,7 @@ import { version } from '../package.json';
 
 import { RawBuildOptions, RawDevOptions, resolveOption } from './options';
 import { findFreePort, findRemoteHost } from './utils';
-import { initWorker } from './worker';
+import { initWorker, publishWorker } from './worker';
 import { buildVite, createViteServer } from './vite';
 
 const cli = cac('cobook');
@@ -31,19 +31,25 @@ cli
   .option('--port <port>', 'port to listen to', { default: 3000 })
   .action(async (root: string | undefined, rawOptions: RawDevOptions) => {
     const options = await resolveOption(root);
-    
+
     const vitePort = await findFreePort(rawOptions.port);
-    const viteServer = await createViteServer(options, rawOptions);
+    const workerPort = await findFreePort(vitePort + 1);
 
     const worker = await initWorker(options);
-    const workerPort = await findFreePort(vitePort + 1);
     worker.setOptions({ port: workerPort, watch: true });
+
+    const viteServer = await createViteServer(options, rawOptions);
 
     await viteServer.listen(vitePort);
     await worker.startServer();
 
     printDevInfo(vitePort, workerPort, rawOptions.host);
   });
+
+cli.command('worker [root]').action(async (root: string | undefined) => {
+  const options = await resolveOption(root);
+  await publishWorker(options);
+});
 
 function printDevInfo(vitePort: number, workerPort: number, host?: string | boolean) {
   console.log();

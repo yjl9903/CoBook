@@ -1,21 +1,32 @@
 import type { WranglerConfig } from '@miniflare/shared';
 import path from 'path';
+import { writeFileSync, unlinkSync } from 'fs';
 import format from 'date-fns/format';
 import { Miniflare } from 'miniflare';
+import json2toml from 'json2toml';
+import execa from 'execa';
 import { debug as createDebug } from 'debug';
 
+import { version } from '../package.json';
+
 import type { CoBookOption } from './types';
+import { isDef } from './utils';
 
 const debug = createDebug('cobook:cli');
 
-export async function resolveWorkerOption(option: CoBookOption) {
+type Require = 'name' | 'account_id' | 'type' | 'compatibility_date';
+
+type ResolvedWranglerConfig = Required<Pick<WranglerConfig, Require>> &
+  Omit<WranglerConfig, Require>;
+
+export function resolveWorkerOption(option: CoBookOption): ResolvedWranglerConfig {
   const wrangler = option.wrangler;
 
   if (!wrangler?.account_id) {
     throw new Error(`You must set account_id in wrangler`);
   }
 
-  const config: WranglerConfig = {
+  const config: ResolvedWranglerConfig = {
     name: wrangler.name ?? 'cobook-worker',
     account_id: wrangler.account_id!,
     type: wrangler.type ?? 'javascript',
@@ -44,16 +55,41 @@ export async function resolveWorkerOption(option: CoBookOption) {
 }
 
 export async function initWorker(option: CoBookOption) {
-  const config = resolveWorkerOption(option);
+  const wrangler = resolveWorkerOption(option);
 
   const mf = new Miniflare({
     scriptPath: path.join(option.workerRoot, 'index.js'),
-    ...config
+    ...wrangler
   });
 
   return mf;
 }
 
-function isDef<T>(obj: T | undefined | null): obj is T {
-  return obj !== undefined && obj !== null;
+export async function publishWorker(option: CoBookOption) {
+  const wrangler = resolveWorkerOption(option);
+  const toml = json2toml(wrangler);
+  const wranglerPath = path.join(option.workerRoot, 'wrangler.toml');
+  writeFileSync(wranglerPath, toml, 'utf-8');
+  debug(toml);
+
+  const pkg = {
+    name: wrangler.name,
+    version,
+    private: true,
+    main: './index.js'
+  };
+  const pkgPath = path.join(option.workerRoot, 'package.json');
+  writeFileSync(pkgPath, JSON.stringify(pkg, null, 2), 'utf-8');
+  debug(pkg);
+
+  console.log(`$ wrangler publish`);
+
+  await execa('wrangler', ['publish'], {
+    cwd: option.workerRoot,
+    stdio: 'inherit',
+    env: { CF_ACCOUNT_ID: option?.wrangler?.account_id }
+  });
+
+  unlinkSync(wranglerPath);
+  unlinkSync(pkgPath);
 }

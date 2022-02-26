@@ -31,6 +31,7 @@
     ]
   },
   "devDependencies": {
+    "@cloudflare/wrangler": "^1.19.8",
     "@cobook/cli": "workspace:*",
     "husky": "4.3.7",
     "lint-staged": "^12.3.4",
