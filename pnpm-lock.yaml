@@ -26,6 +26,7 @@ importers:
 
   packages/cli:
     specifiers:
+      '@cobook/vite-plugin': workspace:*
       '@miniflare/shared': ^2.3.0
       '@types/debug': ^4.1.7
       '@types/js-yaml': ^4.0.5
@@ -47,6 +48,7 @@ importers:
       vue-router: '4'
       workbox-window: ^6.4.2
     dependencies:
+      '@cobook/vite-plugin': link:../vite
       cac: 6.7.12
       date-fns: 2.28.0
       debug: 4.3.3
@@ -71,6 +73,7 @@ importers:
 
   packages/client:
     specifiers:
+      '@cobook/vite-plugin': workspace:*
       '@vitejs/plugin-vue': ^2.2.0
       consola: ^2.15.3
       typescript: ^4.5.4
@@ -84,6 +87,7 @@ importers:
       vue-tsc: ^0.29.8
       workbox-window: ^6.4.2
     dependencies:
+      '@cobook/vite-plugin': link:../vite
       vant: 3.4.5_vue@3.2.31
       vue: 3.2.31
       vue-router: 4.0.12_vue@3.2.31

@@ -3,6 +3,7 @@ import { VitePWA } from 'vite-plugin-pwa';
 import { createHtmlPlugin } from 'vite-plugin-html';
 import vue from '@vitejs/plugin-vue';
 import { createStyleImportPlugin, VantResolve } from 'vite-plugin-style-import';
+import { createCoBookPlugin } from '@cobook/vite-plugin';
 
 const __APP_NAME__ = 'Coin Book';
 
@@ -66,6 +67,7 @@ export default defineConfig({
           }
         ]
       }
-    })
+    }),
+    createCoBookPlugin()
   ]
 });
