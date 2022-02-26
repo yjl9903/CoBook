@@ -1,7 +1,6 @@
 import type { WranglerConfig } from '@miniflare/shared';
 import path from 'path';
 import { writeFileSync, unlinkSync } from 'fs';
-import { Duplex } from 'stream'
 import format from 'date-fns/format';
 import { Miniflare } from 'miniflare';
 import json2toml from 'json2toml';
@@ -34,7 +33,13 @@ export function resolveWorkerOption(option: CoBookOption): ResolvedWranglerConfi
     throw new Error(`You must set account_id in wrangler!`);
   }
   if (!process.env.AUTH) {
-    throw new Error(`You must set environment variables: AUTH!`);
+    if (option.mode === 'dev') {
+      process.env.AUTH = '123456';
+      debug(`You must set environment variables: AUTH!`);
+      debug(`Default AUTH: ${process.env.AUTH}`);
+    } else {
+      throw new Error(`You must set environment variables: AUTH!`);
+    }
   }
 
   const config: ResolvedWranglerConfig = {

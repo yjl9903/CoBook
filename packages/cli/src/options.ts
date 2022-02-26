@@ -22,7 +22,10 @@ export interface RawDevOptions {
   host: boolean;
 }
 
-export async function resolveOption(root: string = process.cwd()): Promise<CoBookOption> {
+export async function resolveOption(
+  mode: CoBookOption['mode'],
+  root: string = process.cwd()
+): Promise<CoBookOption> {
   root = path.resolve(process.cwd(), root);
   debug(`root      : ${root}`);
   const clientRoot = await getClientRoot(root);
@@ -34,6 +37,7 @@ export async function resolveOption(root: string = process.cwd()): Promise<CoBoo
   debug(config);
 
   return {
+    mode,
     clientRoot,
     workerRoot,
     ...config

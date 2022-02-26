@@ -7,6 +7,8 @@ export interface RawCoBookOption {
 }
 
 export interface CoBookOption extends RawCoBookOption {
+  mode: 'dev' | 'prod';
+
   clientRoot: string;
 
   workerRoot: string;

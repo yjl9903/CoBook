@@ -21,7 +21,7 @@ cli
   })
   .option('--outDir <dir>', 'output directory', { default: path.join(process.cwd(), './dist') })
   .action(async (root: string | undefined, rawOptions: RawBuildOptions) => {
-    const options = await resolveOption(root);
+    const options = await resolveOption('prod', root);
     await buildVite(options, rawOptions);
   });
 
@@ -30,7 +30,7 @@ cli
   .option('--host', 'specify hostname')
   .option('--port <port>', 'port to listen to', { default: 3000 })
   .action(async (root: string | undefined, rawOptions: RawDevOptions) => {
-    const options = await resolveOption(root);
+    const options = await resolveOption('dev', root);
 
     const vitePort = await findFreePort(rawOptions.port);
     const workerPort = await findFreePort(vitePort + 1);
@@ -47,7 +47,7 @@ cli
   });
 
 cli.command('worker [root]').action(async (root: string | undefined) => {
-  const options = await resolveOption(root);
+  const options = await resolveOption('prod', root);
   await publishWorker(options);
 });
 
@@ -87,9 +87,9 @@ async function bootstrap() {
       console.error(error);
     }
     debug(error);
-  }
+  };
 
-  process.on('unhandledRejection', error => {
+  process.on('unhandledRejection', (error) => {
     handle(error);
   });
 
