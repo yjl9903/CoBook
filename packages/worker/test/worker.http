@@ -1,0 +1,12 @@
+@baseUrl = http://localhost:3001
+@pass = 123456
+
+### 
+
+GET {{baseUrl}}/
+Authorization: {{pass}}
+
+###
+
+POST {{baseUrl}}/
+Authorization: {{pass}}

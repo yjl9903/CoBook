@@ -1,6 +1,6 @@
 import { build, createServer } from 'vite';
 import type { CoBookOption } from './types';
-import { RawBuildOptions, RawDevOptions, resolveOption } from './options';
+import { RawBuildOptions, RawDevOptions } from './options';
 
 export async function resolveViteOption(option: CoBookOption) {}
 
