@@ -1,6 +1,7 @@
 import type { WranglerConfig } from '@miniflare/shared';
 import path from 'path';
 import { writeFileSync, unlinkSync } from 'fs';
+import { Duplex } from 'stream'
 import format from 'date-fns/format';
 import { Miniflare } from 'miniflare';
 import json2toml from 'json2toml';
@@ -14,7 +15,14 @@ import { isDef } from './utils';
 
 const debug = createDebug('cobook:cli');
 
-type Require = 'name' | 'account_id' | 'type' | 'compatibility_date';
+type Require =
+  | 'name'
+  | 'account_id'
+  | 'type'
+  | 'compatibility_date'
+  | 'vars'
+  | 'kv_namespaces'
+  | 'durable_objects';
 
 type ResolvedWranglerConfig = Required<Pick<WranglerConfig, Require>> &
   Omit<WranglerConfig, Require>;
@@ -23,14 +31,24 @@ export function resolveWorkerOption(option: CoBookOption): ResolvedWranglerConfi
   const wrangler = option.wrangler;
 
   if (!wrangler?.account_id) {
-    throw new Error(`You must set account_id in wrangler`);
+    throw new Error(`You must set account_id in wrangler!`);
+  }
+  if (!process.env.AUTH) {
+    throw new Error(`You must set environment variables: AUTH!`);
   }
 
   const config: ResolvedWranglerConfig = {
     name: wrangler.name ?? 'cobook-worker',
     account_id: wrangler.account_id!,
     type: wrangler.type ?? 'javascript',
-    compatibility_date: wrangler.compatibility_date ?? format(new Date(), 'yyyy-MM-dd')
+    compatibility_date: wrangler.compatibility_date ?? format(new Date(), 'yyyy-MM-dd'),
+    vars: {
+      AUTH: process.env.AUTH
+    },
+    kv_namespaces: [],
+    durable_objects: {
+      bindings: []
+    }
   };
 
   if (isDef(wrangler.zone_id)) {
@@ -48,6 +66,17 @@ export function resolveWorkerOption(option: CoBookOption): ResolvedWranglerConfi
   if (isDef(wrangler.compatibility_flags)) {
     config.compatibility_flags = wrangler.compatibility_flags;
   }
+  if (isDef(wrangler.vars)) {
+    for (const key in wrangler.vars) {
+      config.vars[key] = wrangler.vars[key];
+    }
+  }
+  if (isDef(wrangler.kv_namespaces)) {
+    config.kv_namespaces.push(...wrangler.kv_namespaces);
+  }
+  if (isDef(wrangler.durable_objects?.bindings)) {
+    config.durable_objects.bindings.push(...wrangler.durable_objects.bindings);
+  }
 
   debug(config);
 
@@ -59,6 +88,7 @@ export async function initWorker(option: CoBookOption) {
 
   const mf = new Miniflare({
     scriptPath: path.join(option.workerRoot, 'index.js'),
+    bindings: wrangler.vars,
     ...wrangler
   });
 
@@ -83,7 +113,6 @@ export async function publishWorker(option: CoBookOption) {
   debug(pkg);
 
   console.log(`$ wrangler publish`);
-
   await execa('wrangler', ['publish'], {
     cwd: option.workerRoot,
     stdio: 'inherit',
