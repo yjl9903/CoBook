@@ -1,1 +1,1 @@
-# CLI
+# @cobook/cli

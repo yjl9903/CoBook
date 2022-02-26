@@ -1,1 +1,1 @@
-# Worker
+# @cobook/worker

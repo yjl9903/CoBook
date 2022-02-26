@@ -98,6 +98,14 @@ importers:
       vite-plugin-style-import: 2.0.0_vite@2.8.4
       vue-tsc: 0.29.8_typescript@4.5.5
 
+  packages/vite:
+    specifiers:
+      tsup: ^5.11.13
+      vite: ^2.8.0
+    devDependencies:
+      tsup: 5.11.13_typescript@4.5.5
+      vite: 2.8.4
+
   packages/worker:
     specifiers:
       '@cloudflare/workers-types': ^3.4.0
