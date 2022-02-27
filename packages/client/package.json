@@ -12,6 +12,7 @@
     "@cobook/vite-plugin": "workspace:*",
     "@fingerprintjs/fingerprintjs": "^3.3.3",
     "@fingerprintjs/fingerprintjs-pro": "^3.5.5",
+    "date-fns": "^2.28.0",
     "pinia": "^2.0.11",
     "pinia-plugin-persistedstate": "^1.2.3",
     "vant": "^3.4.5",

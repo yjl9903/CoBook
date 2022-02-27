@@ -4,7 +4,7 @@ import { defineStore } from 'pinia';
 import { baseURL } from '~cobook';
 import { fingerprint } from './fingerprint';
 
-const useAuthStore = defineStore('authorization', {
+export const useAuthStore = defineStore('authorization', {
   state: () => {
     return {
       fingerprint: '',

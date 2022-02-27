@@ -84,6 +84,7 @@ importers:
       '@unocss/transformer-directives': ^0.26.3
       '@vitejs/plugin-vue': ^2.2.0
       consola: ^2.15.3
+      date-fns: ^2.28.0
       pinia: ^2.0.11
       pinia-plugin-persistedstate: ^1.2.3
       typescript: ^4.5.4
@@ -102,6 +103,7 @@ importers:
       '@cobook/vite-plugin': link:../vite
       '@fingerprintjs/fingerprintjs': 3.3.3
       '@fingerprintjs/fingerprintjs-pro': 3.5.5
+      date-fns: 2.28.0
       pinia: 2.0.11_typescript@4.5.5+vue@3.2.31
       pinia-plugin-persistedstate: 1.2.3_pinia@2.0.11
       vant: 3.4.5_vue@3.2.31
