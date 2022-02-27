@@ -45,7 +45,7 @@ const handleSelect = (action: PopoverAction) => {
         :offset="[8, 12]"
       >
         <template #reference>
-          <Icon name="ellipsis" color="black" />
+          <Icon name="ellipsis" color="black" mr="1" />
         </template>
       </Popover>
     </template>
