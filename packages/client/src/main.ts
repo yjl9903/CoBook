@@ -1,5 +1,5 @@
 import { createApp } from 'vue';
-import { Cell, CellGroup, Button } from 'vant';
+import { Cell, CellGroup, Button, Image } from 'vant';
 import { createPinia } from 'pinia';
 import piniaPluginPersistedstate from 'pinia-plugin-persistedstate';
 
@@ -14,7 +14,7 @@ registerSW({});
 const pinia = createPinia();
 pinia.use(piniaPluginPersistedstate);
 
-createApp(App).use(Cell).use(CellGroup).use(Button).use(router).use(pinia).mount('#app');
+createApp(App).use(Cell).use(CellGroup).use(Button).use(Image).use(router).use(pinia).mount('#app');
 
 {
   // Fix mobild scale

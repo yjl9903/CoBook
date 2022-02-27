@@ -16,6 +16,7 @@ import {
 import { template, categories } from '~cobook';
 import { useAccountStore } from '@/logic/account';
 import AccountList from './List.vue';
+import { Template } from '@cobook/shared';
 
 const store = useAccountStore();
 const active = ref();
@@ -26,30 +27,47 @@ const amtErrMsg = ref('');
 const formatter = (text: string) => {
   amtErrMsg.value = '';
   if (/\d+\.\d\d\d+$/.test(text)) {
-    return Number.parseFloat(text).toFixed(2)
+    return Number.parseFloat(text).toFixed(2);
   } else {
     return text;
   }
 };
 
 const cat = ref(categories.length > 0 ? categories[0].name : '');
+const tags = ref([] as string[]);
+const description = ref('');
+
+const useTemplate = (template: Omit<Template, 'name' | 'icon'>) => {
+  cat.value = template.category;
+  if (template.amount) {
+    amt.value = template.amount;
+  }
+  if (template.tags) {
+    tags.value = template.tags;
+  }
+  if (template.description) {
+    description.value = '';
+  }
+};
 
 const submit = async () => {
   if (!amt.value || amt.value === '') {
     amtErrMsg.value = '请输入金额';
-    return ;
+    return;
   }
 
   await store.push({
     amount: +amt.value,
     category: cat.value,
-    tags: [],
-    description: ''
+    tags: tags.value,
+    description: description.value
   });
 
   Notify({ message: '记录成功', type: 'success' });
 
   amt.value = '';
+  tags.value = [];
+  description.value = '';
 };
 </script>
 
@@ -85,12 +103,18 @@ const submit = async () => {
         <tabs v-model:active="active">
           <tab v-for="category in categories" :key="category.name" :title="category.name">
             <grid :border="false" clickable>
-              <grid-item icon="success" :text="`使用`" @click="cat = category.name"></grid-item>
+              <grid-item
+                icon="success"
+                :text="`使用`"
+                @click="useTemplate({ category: category.name })"
+              ></grid-item>
               <grid-item
                 v-for="t in template.filter((t) => t.category === category.name)"
-                icon="photo-o"
                 :text="t.name"
-              />
+                @click="useTemplate(t)"
+              >
+                <van-image :src="t.icon"></van-image>
+              </grid-item>
             </grid>
           </tab>
         </tabs>
