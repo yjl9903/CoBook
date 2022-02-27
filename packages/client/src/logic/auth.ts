@@ -17,16 +17,30 @@ export const useAuthStore = defineStore('authorization', {
   persist: true
 });
 
+const useValidStore = defineStore('authorization/valid', {
+  state: () => {
+    return {
+      ok: false
+    };
+  }
+});
+
 export async function authorized() {
+  const valid = useValidStore();
+  if (valid.ok) return true;
   const store = useAuthStore();
-  return store.pass !== '' && store.fingerprint !== '' && (await store.client.validate());
+  const flag = store.pass !== '' && store.fingerprint !== '' && (await store.client.validate());
+  valid.ok = flag;
+  return flag;
 }
 
 export async function login(pass: string) {
+  const valid = useValidStore();
   const store = useAuthStore();
   store.fingerprint = (await fingerprint()).visitorId;
   const client = new CoBookClient(baseURL, pass, store.fingerprint);
   if (await client.validate()) {
+    valid.ok = true;
     store.pass = pass;
     return true;
   } else {

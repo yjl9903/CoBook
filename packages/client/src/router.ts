@@ -17,9 +17,17 @@ export const router = createRouter({
     {
       path: '/login',
       name: 'Login',
-      component: () => import('./pages/Login/index.vue'),
+      component: () => import('./pages/Login.vue'),
       meta: {
         title: '登陆'
+      }
+    },
+    {
+      path: '/about',
+      name: 'About',
+      component: () => import('./pages/About.vue'),
+      meta: {
+        title: '关于'
       }
     }
   ],

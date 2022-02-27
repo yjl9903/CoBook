@@ -79,6 +79,7 @@ importers:
       '@cobook/vite-plugin': workspace:*
       '@fingerprintjs/fingerprintjs': ^3.3.3
       '@fingerprintjs/fingerprintjs-pro': ^3.5.5
+      '@iconify/json': ^1.1.450
       '@unocss/preset-attributify': ^0.26.3
       '@unocss/preset-uno': ^0.26.3
       '@unocss/transformer-directives': ^0.26.3
@@ -89,6 +90,7 @@ importers:
       pinia-plugin-persistedstate: ^1.2.3
       typescript: ^4.5.4
       unocss: ^0.26.3
+      unplugin-icons: ^0.13.0
       vant: ^3.4.5
       vite: ^2.8.0
       vite-plugin-html: ^3.0.6
@@ -111,6 +113,7 @@ importers:
       vue-router: 4.0.12_vue@3.2.31
       workbox-window: 6.5.0
     devDependencies:
+      '@iconify/json': 1.1.461
       '@unocss/preset-attributify': 0.26.3
       '@unocss/preset-uno': 0.26.3
       '@unocss/transformer-directives': 0.26.3
@@ -118,6 +121,7 @@ importers:
       consola: 2.15.3
       typescript: 4.5.5
       unocss: 0.26.3
+      unplugin-icons: 0.13.2_vite@2.8.4
       vite: 2.8.4
       vite-plugin-html: 3.0.6_vite@2.8.4
       vite-plugin-pwa: 0.11.13_vite@2.8.4
@@ -1293,6 +1297,10 @@ packages:
   /@iarna/toml/2.2.5:
     resolution: {integrity: sha512-trnsAYxU3xnS1gPHPyU961coFyLkh4gAD/0zQ5mymY4yOZ+CYvsPqUbOFSw0aDM4y0tV7tiFxL/1XfXPNC6IPg==}
     dev: false
+
+  /@iconify/json/1.1.461:
+    resolution: {integrity: sha512-9Y41Tk9s3LDt4WI20XySNhNX6qTJ/WOBeE3O2iyoV9LJ6gFEDjp0uTPzfRU9NUx7D6VkvQ/htJEuRe9LmyMqUA==}
+    dev: true
 
   /@iconify/types/1.0.12:
     resolution: {integrity: sha512-6er6wSGF3hgc1JEZqiGpg21CTCjHBYOUwqLmb2Idzkjiw6ogalGP0ZMLVutCzah+0WB4yP+Zd2oVPN8jvJ+Ftg==}
@@ -5173,6 +5181,59 @@ packages:
       - supports-color
     dev: true
 
+  /unplugin-icons/0.13.2_vite@2.8.4:
+    resolution: {integrity: sha512-Dwfn5DkKrp/BpZV0R/2wgU39j+kjkeuIQ54PmJ9LhXNpNAS+Huf6Fl/PUmUrlWOvMAz0uPo3y/5lQKZUBjBkBQ==}
+    peerDependencies:
+      '@svgr/core': '>=5.5.0'
+      '@vue/compiler-sfc': ^3.0.2
+      vue-template-compiler: ^2.6.12
+      vue-template-es2015-compiler: ^1.9.0
+    peerDependenciesMeta:
+      '@svgr/core':
+        optional: true
+      '@vue/compiler-sfc':
+        optional: true
+      vue-template-compiler:
+        optional: true
+      vue-template-es2015-compiler:
+        optional: true
+    dependencies:
+      '@antfu/install-pkg': 0.1.0
+      '@antfu/utils': 0.5.0
+      '@iconify/utils': 1.0.23
+      debug: 4.3.3
+      kolorist: 1.5.1
+      local-pkg: 0.4.1
+      unplugin: 0.3.2_vite@2.8.4
+    transitivePeerDependencies:
+      - esbuild
+      - rollup
+      - supports-color
+      - vite
+      - webpack
+    dev: true
+
+  /unplugin/0.3.2_vite@2.8.4:
+    resolution: {integrity: sha512-5d0DMYNKZU+S9eZUiBfw6Co32eRg8myUgBPoWSqG/wDFCUE/WznfSsJnZWi1P9l69x4uLJqt2qVq1xW/AsXFrw==}
+    peerDependencies:
+      esbuild: '>=0.13'
+      rollup: ^2.50.0
+      vite: ^2.3.0
+      webpack: 4 || 5
+    peerDependenciesMeta:
+      esbuild:
+        optional: true
+      rollup:
+        optional: true
+      vite:
+        optional: true
+      webpack:
+        optional: true
+    dependencies:
+      vite: 2.8.4
+      webpack-virtual-modules: 0.4.3
+    dev: true
+
   /upath/1.2.0:
     resolution: {integrity: sha512-aZwGpamFO61g3OlfT7OQCHqhGnW43ieH9WZeP7QxN/G/jS4jfqUkZxoryvJgVPEcrl5NL/ggHsSmLMHuH64Lhg==}
     engines: {node: '>=4'}
@@ -5540,6 +5601,10 @@ packages:
   /webpack-sources/3.2.3:
     resolution: {integrity: sha512-/DyMEOrDgLKKIG0fmvtz+4dUX/3Ghozwgm6iPp8KRhvn+eQf9+Q7GWxVNMk3+uCPWfdXYC4ExGBckIXdFEfH1w==}
     engines: {node: '>=10.13.0'}
+    dev: true
+
+  /webpack-virtual-modules/0.4.3:
+    resolution: {integrity: sha512-5NUqC2JquIL2pBAAo/VfBP6KuGkHIZQXW/lNKupLPfhViwh8wNsu0BObtl09yuKZszeEUfbXz8xhrHvSG16Nqw==}
     dev: true
 
   /webpack/5.69.1_webpack-cli@4.9.2:

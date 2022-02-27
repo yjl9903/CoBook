@@ -3,6 +3,7 @@ import { defineConfig } from 'vite';
 import { VitePWA } from 'vite-plugin-pwa';
 import { createHtmlPlugin } from 'vite-plugin-html';
 import vue from '@vitejs/plugin-vue';
+import Icons from 'unplugin-icons/vite';
 import { createStyleImportPlugin, VantResolve } from 'vite-plugin-style-import';
 import { createCoBookPlugin } from '@cobook/vite-plugin';
 
@@ -10,6 +11,10 @@ import Unocss from 'unocss/vite';
 import presetUno from '@unocss/preset-uno';
 import presetAttributify from '@unocss/preset-attributify';
 import transformerDirective from '@unocss/transformer-directives';
+
+import { version } from './package.json';
+
+const OFFICIAL_REPO = 'yjl9903/CoBook';
 
 const __APP_NAME__ = 'Coin Book';
 
@@ -30,7 +35,12 @@ const __ICON__ = [
 // https://vitejs.dev/config/
 export default defineConfig({
   define: {
-    __FingerprintJS__: process.env.FingerprintJS && `"${process.env.FingerprintJS}"`
+    __FingerprintJS__: process.env.FingerprintJS && `"${process.env.FingerprintJS}"`,
+    __GITHUB_SHA__:
+      process.env.GITHUB_REPOSITORY === OFFICIAL_REPO &&
+      process.env.GITHUB_SHA &&
+      `"${process.env.GITHUB_SHA}"`,
+    __VERSION__: `"${version}"`
   },
   resolve: {
     alias: {
@@ -80,6 +90,7 @@ export default defineConfig({
         ]
       }
     }),
+    Icons(),
     Unocss({
       presets: [presetUno(), presetAttributify(), transformerDirective()]
     }),

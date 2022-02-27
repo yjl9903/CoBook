@@ -2,6 +2,7 @@ import { build, createServer, mergeConfig, Plugin, UserConfig } from 'vite';
 import { existsSync } from 'fs';
 import path from 'path';
 
+import { version } from '../package.json';
 import type { CoBookCliOption } from './types';
 import { RawBuildOptions, RawDevOptions } from './options';
 

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Ref, ref, inject } from 'vue';
+import { ref } from 'vue';
 import {
   Field,
   NumberKeyboard,
@@ -14,12 +14,8 @@ import {
 } from 'vant';
 
 import { template, categories } from '~cobook';
-import { enterHomeKey } from '@/constant';
 import { useAccountStore } from '@/logic/account';
 import AccountList from './List.vue';
-
-const login = inject<Ref<boolean>>(enterHomeKey);
-login!.value = true;
 
 const store = useAccountStore();
 const active = ref();
