@@ -1,16 +1,27 @@
 <script setup lang="ts">
 import { Ref, ref, inject } from 'vue';
-import { Field, NumberKeyboard, CellGroup, Cell, Grid, GridItem, Tab, Tabs, Tag } from 'vant';
+import {
+  Field,
+  NumberKeyboard,
+  CellGroup,
+  Cell,
+  Grid,
+  GridItem,
+  Tab,
+  Tabs,
+  Tag,
+  Notify
+} from 'vant';
 
 import { template, categories } from '~cobook';
 import { enterHomeKey } from '@/constant';
-import { useAuthStore } from '@/logic/auth';
+import { useAccountStore } from '@/logic/account';
 import AccountList from './List.vue';
 
 const login = inject<Ref<boolean>>(enterHomeKey);
 login!.value = true;
 
-const store = useAuthStore();
+const store = useAccountStore();
 const active = ref();
 const show = ref(false);
 
@@ -18,12 +29,16 @@ const amt = ref('');
 const cat = ref(categories.length > 0 ? categories[0].name : '');
 
 const submit = async () => {
-  await store.client.create({
+  await store.push({
     amount: +amt.value,
     category: cat.value,
     tags: [],
     description: ''
   });
+
+  Notify({ message: '记录成功', type: 'success' });
+
+  amt.value = '';
 };
 </script>
 
@@ -35,7 +50,7 @@ const submit = async () => {
         label="金额"
         readonly
         clickable
-        placeholder="0"
+        placeholder="￥ 0"
         @touchstart.stop="show = true"
         input-align="right"
       />

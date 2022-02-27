@@ -1,7 +1,7 @@
 import axios, { AxiosInstance } from 'axios';
 import { AccountItem } from './types';
 
-type AccountPayload = Omit<AccountItem, 'fingerprint' | 'timestamp'>;
+export type AccountPayload = Omit<AccountItem, 'fingerprint' | 'timestamp'>;
 
 type ErrorHandler = (err: any) => Promise<void>;
 
