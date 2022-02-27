@@ -10,6 +10,7 @@ import {
   Tab,
   Tabs,
   Tag,
+  Loading,
   Notify
 } from 'vant';
 
@@ -116,7 +117,10 @@ const submit = async () => {
                 @click="useTemplate(t)"
               >
                 <div flex flex-col items="center" justify="center">
-                  <van-image :src="t.icon" height="50%" width="50%"></van-image>
+                  <van-image :src="t.icon" height="50%" width="50%">
+                    <template v-slot:loading>
+                      <loading type="spinner" size="20" /> </template
+                  ></van-image>
                   <span class="van-grid-item__text mt-2">{{ t.name }}</span>
                 </div>
               </grid-item>
