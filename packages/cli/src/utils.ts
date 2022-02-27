@@ -5,6 +5,14 @@ export function isDef<T>(obj: T | undefined | null): obj is T {
   return obj !== undefined && obj !== null;
 }
 
+export function ensurePrefix(prefix: string, str: string) {
+  if (!str.startsWith(prefix)) {
+    return prefix + str;
+  } else {
+    return str;
+  }
+}
+
 export function findRemoteHost() {
   return Object.values(os.networkInterfaces()).flatMap((v) =>
     (v || []).filter(

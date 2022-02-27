@@ -1,15 +1,17 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue';
+import { ref, computed, provide } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { NavBar, Icon, Popover, PopoverAction } from 'vant';
 
 import { name } from '~cobook';
 import { authorized } from './logic/auth';
+import { EnterHomeKey } from './constant';
 
 const route = useRoute();
 const router = useRouter();
 
 const enterHome = ref(false);
+provide(EnterHomeKey, enterHome);
 authorized().then((r) => (enterHome.value = r));
 const isLogin = computed(() => {
   return route.name === 'Login';

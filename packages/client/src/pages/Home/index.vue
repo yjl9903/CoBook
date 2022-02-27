@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, inject, Ref } from 'vue';
 import {
   Field,
   NumberKeyboard,
@@ -13,10 +13,13 @@ import {
   Notify
 } from 'vant';
 
+import { Template } from '@cobook/shared';
 import { template, categories } from '~cobook';
 import { useAccountStore } from '@/logic/account';
 import AccountList from './List.vue';
-import { Template } from '@cobook/shared';
+import { EnterHomeKey } from '@/constant';
+
+inject<Ref<boolean>>(EnterHomeKey)!.value = true;
 
 const store = useAccountStore();
 const active = ref();
@@ -110,10 +113,12 @@ const submit = async () => {
               ></grid-item>
               <grid-item
                 v-for="t in template.filter((t) => t.category === category.name)"
-                :text="t.name"
                 @click="useTemplate(t)"
               >
-                <van-image :src="t.icon"></van-image>
+                <div flex flex-col items="center" justify="center">
+                  <van-image :src="t.icon" height="50%" width="50%"></van-image>
+                  <span class="van-grid-item__text mt-2">{{ t.name }}</span>
+                </div>
               </grid-item>
             </grid>
           </tab>
