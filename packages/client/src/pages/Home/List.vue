@@ -43,8 +43,9 @@ const showEdit = computed({
 
     <action-sheet
       v-model:show="showEdit"
-      :duration="0.2"
       :title="currentEdit && format(new Date(currentEdit.timestamp), 'yyyy-MM-dd hh:mm')"
+      :duration="0.2"
+      :overlay-style="{ background: 'transparent' }"
     >
       <div px="4" pb="8">
         <van-cell-group v-if="currentEdit">
