@@ -21,10 +21,25 @@ const store = useAccountStore();
 const active = ref();
 const show = ref(false);
 
-const amt = ref('');
+const amt = ref();
+const amtErrMsg = ref('');
+const formatter = (text: string) => {
+  amtErrMsg.value = '';
+  if (/\d+\.\d\d\d+$/.test(text)) {
+    return Number.parseFloat(text).toFixed(2)
+  } else {
+    return text;
+  }
+};
+
 const cat = ref(categories.length > 0 ? categories[0].name : '');
 
 const submit = async () => {
+  if (!amt.value || amt.value === '') {
+    amtErrMsg.value = '请输入金额';
+    return ;
+  }
+
   await store.push({
     amount: +amt.value,
     category: cat.value,
@@ -46,10 +61,18 @@ const submit = async () => {
         label="金额"
         readonly
         clickable
-        placeholder="￥ 0"
+        clearable
+        :formatter="formatter"
+        :maxlength="10"
+        :error-message="amtErrMsg"
+        error-message-align="right"
         @touchstart.stop="show = true"
         input-align="right"
-      />
+      >
+        <!-- <template #extra>
+          <span>￥ </span>
+        </template> -->
+      </field>
 
       <cell>
         <div flex justify="between">
