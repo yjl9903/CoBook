@@ -1,18 +1,14 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { Ref, ref, inject } from 'vue';
 import { Button, Field, NumberKeyboard, CellGroup, Cell, Grid, GridItem } from 'vant';
-import { fingerprint } from '@/logic/fingerprint';
-import { template } from '~cobook';
+
+import { enterHomeKey } from '@/constant';
+
+const login = inject<Ref<boolean>>(enterHomeKey);
+login!.value = true;
 
 const show = ref(false);
 const value = ref('');
-
-fingerprint().then((fg) => {
-  console.log(fg.visitorId);
-  console.log(fg);
-});
-
-console.log(template);
 </script>
 
 <template>
