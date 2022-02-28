@@ -26,6 +26,17 @@ export const useAccountStore = defineStore('account', {
       });
       this.accounts.push(account);
     },
+    async update(timestamp: string, account: AccountItem) {
+      const authStore = useAuthStore();
+      const result = await authStore.client.update(timestamp, account);
+      const id = this.accounts.findIndex((a) => a.timestamp === timestamp);
+      if (id !== -1) {
+        this.accounts.splice(id, 1);
+        this.accounts.push(result);
+        this.accounts.sort((lhs, rhs) => lhs.timestamp.localeCompare(rhs.timestamp));
+      }
+      return result;
+    },
     async delete(account: AccountItem) {
       const authStore = useAuthStore();
       const flag = await authStore.client.delete(account.timestamp);

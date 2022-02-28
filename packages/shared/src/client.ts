@@ -46,7 +46,7 @@ export class CoBookClient {
    * @returns
    */
   async update(
-    timestamp: number,
+    timestamp: string,
     account: AccountPayload & { timestamp: string }
   ): Promise<AccountItem> {
     const { data } = await this.api.put(`/account/${timestamp}`, {
