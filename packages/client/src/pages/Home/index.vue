@@ -118,7 +118,7 @@ const submit = async () => {
             <grid :border="false" clickable>
               <grid-item
                 icon="success"
-                :text="`使用`"
+                :text="`默认`"
                 @click="useTemplate({ category: category.name })"
               ></grid-item>
               <grid-item
