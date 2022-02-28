@@ -29,14 +29,36 @@ export class CoBookClient {
   async create(account: AccountPayload): Promise<AccountItem> {
     const { data } = await this.api.post('/account', {
       ...account,
-      fingerprint: this.fingerprint,
-      timestamp: new Date().getTime()
+      timestamp: new Date().getTime(),
+      fingerprint: this.fingerprint
     });
     if (CoBookClient.isResponseError(data)) {
       await this.handleError(data);
       throw data;
     }
     return data;
+  }
+
+  async update(timestamp: number, account: AccountPayload): Promise<AccountItem> {
+    const { data } = await this.api.put('/account', {
+      ...account,
+      timestamp,
+      fingerprint: this.fingerprint
+    });
+    if (CoBookClient.isResponseError(data)) {
+      await this.handleError(data);
+      throw data;
+    }
+    return data;
+  }
+
+  async delete(timestamp: string): Promise<boolean> {
+    const { data } = await this.api.delete(`/account/${timestamp}`);
+    if (CoBookClient.isResponseError(data)) {
+      return false;
+    } else {
+      return true;
+    }
   }
 
   async list(): Promise<AccountItem[]> {

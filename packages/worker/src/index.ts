@@ -1,5 +1,7 @@
+import { Request } from 'itty-router';
+
 import { createRouter } from './router';
-import { createAccount, listAccounts } from './service';
+import { createAccount, deleteAccount, listAccounts, updateAccount } from './service';
 import { makeResponse } from './utils';
 
 const router = createRouter((router) => {
@@ -13,8 +15,18 @@ const router = createRouter((router) => {
 
   // TODO: valiate
   router.post('/account', async (request: Request) => {
-    const content = await request.json<any>();
+    const content = await request.json!();
     return createAccount(content);
+  });
+
+  router.put('/account', async (request: Request) => {
+    const content = await request.json!();
+    return updateAccount(content);
+  });
+
+  router.delete('/account/:id', async (request: Request) => {
+    const id = request.params?.id;
+    return deleteAccount(id);
   });
 });
 

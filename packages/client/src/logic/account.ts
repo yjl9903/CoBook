@@ -25,6 +25,21 @@ export const useAccountStore = defineStore('account', {
         description: payload.description
       });
       this.accounts.push(account);
+    },
+    async delete(account: AccountItem) {
+      const authStore = useAuthStore();
+      const flag = await authStore.client.delete(account.timestamp);
+      if (flag) {
+        const id = this.accounts.findIndex((a) => a.timestamp === account.timestamp);
+        if (id !== -1) {
+          this.accounts.splice(id, 1);
+        } else {
+          // Error
+        }
+        return flag;
+      } else {
+        return false;
+      }
     }
   },
   persist: true

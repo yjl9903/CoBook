@@ -1,7 +1,9 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue';
-import { List, Tag, ActionSheet } from 'vant';
+import { List, Tag, ActionSheet, Notify } from 'vant';
 import format from 'date-fns/format';
+
+import { AccountItem } from '@cobook/shared';
 
 import { useAccountStore } from '@/logic/account';
 
@@ -18,6 +20,14 @@ const showEdit = computed({
     currentEdit.value = undefined;
   }
 });
+
+const deleteAccount = async (current?: AccountItem) => {
+  if (current) {
+    await store.delete(current);
+    currentEdit.value = undefined;
+    Notify({ message: '删除成功', type: 'success' });
+  }
+};
 </script>
 
 <template>
@@ -84,7 +94,9 @@ const showEdit = computed({
         </van-cell-group>
 
         <div mt="4" text="right">
-          <van-button round icon="delete" type="danger">删除</van-button>
+          <van-button round icon="delete" type="danger" @click="deleteAccount(currentEdit)"
+            >删除</van-button
+          >
         </div>
       </div>
     </action-sheet>

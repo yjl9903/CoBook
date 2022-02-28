@@ -118,8 +118,7 @@ const submit = async () => {
               >
                 <div flex flex-col items="center" justify="center">
                   <van-image :src="t.icon" height="50%" width="50%">
-                    <template v-slot:loading>
-                      <loading type="spinner" size="20" /> </template
+                    <template v-slot:loading> <loading type="spinner" size="20" /> </template
                   ></van-image>
                   <span class="van-grid-item__text mt-2">{{ t.name }}</span>
                 </div>

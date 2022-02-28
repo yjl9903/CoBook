@@ -13,6 +13,24 @@ export async function createAccount(item: AccountItem) {
   }
 }
 
+export async function updateAccount(item: AccountItem) {
+  if (await accountStore.get(item.timestamp)) {
+    await accountStore.put(item.timestamp, item);
+    return makeResponse(item);
+  } else {
+    return makeErrorResponse('Not Found');
+  }
+}
+
+export async function deleteAccount(timestamp?: string) {
+  if (timestamp && (await accountStore.get(timestamp))) {
+    await accountStore.remove(timestamp);
+    return makeResponse({});
+  } else {
+    return makeErrorResponse('Not Found');
+  }
+}
+
 export async function listAccounts() {
   const accounts = await accountStore.list();
   return makeResponse({ accounts });
