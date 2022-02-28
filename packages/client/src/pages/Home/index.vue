@@ -168,9 +168,4 @@ const submit = async () => {
 #home {
   background: rgb(247, 247, 247);
 }
-
-.outside {
-  -webkit-transform: translate3d(0, 0, 1px);
-  transform: translate3d(0, 0, 1px);
-}
 </style>
