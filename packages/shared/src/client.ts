@@ -39,10 +39,18 @@ export class CoBookClient {
     return data;
   }
 
-  async update(timestamp: number, account: AccountPayload): Promise<AccountItem> {
-    const { data } = await this.api.put('/account', {
+  /**
+   * Update account item
+   * @param timestamp old timestamp
+   * @param account new account item
+   * @returns
+   */
+  async update(
+    timestamp: number,
+    account: AccountPayload & { timestamp: string }
+  ): Promise<AccountItem> {
+    const { data } = await this.api.put(`/account/${timestamp}`, {
       ...account,
-      timestamp,
       fingerprint: this.fingerprint
     });
     if (CoBookClient.isResponseError(data)) {

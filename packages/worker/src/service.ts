@@ -13,8 +13,11 @@ export async function createAccount(item: AccountItem) {
   }
 }
 
-export async function updateAccount(item: AccountItem) {
-  if (await accountStore.get(item.timestamp)) {
+export async function updateAccount(timestamp: string | undefined, item: AccountItem) {
+  if (timestamp && (await accountStore.get(timestamp))) {
+    if (item.timestamp !== timestamp) {
+      await accountStore.remove(timestamp);
+    }
     await accountStore.put(item.timestamp, item);
     return makeResponse(item);
   } else {

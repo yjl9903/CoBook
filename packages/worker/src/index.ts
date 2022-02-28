@@ -19,9 +19,10 @@ const router = createRouter((router) => {
     return createAccount(content);
   });
 
-  router.put('/account', async (request: Request) => {
+  router.put('/account/:id', async (request: Request) => {
+    const id = request.params?.id;
     const content = await request.json!();
-    return updateAccount(content);
+    return updateAccount(id, content);
   });
 
   router.delete('/account/:id', async (request: Request) => {

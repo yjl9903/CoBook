@@ -21,12 +21,15 @@ const showSetting = ref(false);
 
 const actions = [
   { text: '记录', icon: 'home-o' },
+  { text: '所有', icon: 'orders-o' },
   { text: '关于', icon: 'info-o' }
 ];
 const handleSelect = (action: PopoverAction) => {
   if (action.text === actions[0].text) {
     router.push({ name: 'Home' });
   } else if (action.text === actions[1].text) {
+    router.push({ name: 'Account' });
+  } else if (action.text === actions[2].text) {
     router.push({ name: 'About' });
   }
 };

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue';
-import { List, ActionSheet, Notify } from 'vant';
+import { Field, List, ActionSheet, Notify } from 'vant';
 import format from 'date-fns/format';
 
 import { AccountItem } from '@cobook/shared';
@@ -85,12 +85,15 @@ const deleteAccount = async (current?: AccountItem) => {
               <span>{{ format(new Date(currentEdit.timestamp), 'yyyy-MM-dd hh:mm') }}</span>
             </div>
           </van-cell>
-          <van-cell>
-            <div flex justify="between">
-              <span>备注</span>
-              <span>{{ currentEdit.description }}</span>
-            </div>
-          </van-cell>
+          <field
+            v-model="currentEdit.description"
+            rows="2"
+            autosize
+            label="备注"
+            type="textarea"
+            maxlength="50"
+            show-word-limit
+          />
         </van-cell-group>
 
         <div mt="4" text="right">
