@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed, watch } from 'vue';
+import { ref, watch } from 'vue';
 import { Field, ActionSheet, Notify } from 'vant';
 import format from 'date-fns/format';
 
@@ -7,37 +7,33 @@ import { AccountItem } from '@cobook/shared';
 import { useAccountStore } from '@/logic/account';
 
 import TagSelector from './TagSelector.vue';
+import EditContainer from './EditContainer.vue';
 
 const props = defineProps<{ account: AccountItem }>();
 
 const emit = defineEmits<{ (e: 'close'): void }>();
 
-const currentEdit = ref<AccountItem | undefined>(props.account);
+const currentEdit = ref<AccountItem | null>(props.account);
+const showEdit = ref(false);
 
 watch(
   () => props.account,
   (account) => {
-    currentEdit.value = {
-      ...account
-    };
+    if (!!account) {
+      currentEdit.value = {
+        ...account
+      };
+      showEdit.value = true;
+    }
   }
 );
-
-const showEdit = computed({
-  get() {
-    return !!currentEdit.value;
-  },
-  set() {
-    currentEdit.value = undefined;
-  }
-});
 
 const store = useAccountStore();
 
 const saveAccount = async () => {
   if (currentEdit.value) {
     await store.update(props.account.timestamp, currentEdit.value);
-    currentEdit.value = undefined;
+    showEdit.value = false;
     Notify({ message: '更新成功', type: 'success' });
   }
 };
@@ -45,7 +41,7 @@ const saveAccount = async () => {
 const deleteAccount = async () => {
   if (currentEdit.value) {
     await store.delete(currentEdit.value);
-    currentEdit.value = undefined;
+    showEdit.value = false;
     Notify({ message: '删除成功', type: 'success' });
   }
 };
@@ -54,32 +50,40 @@ const deleteAccount = async () => {
 <template>
   <action-sheet
     v-model:show="showEdit"
-    :title="currentEdit && format(new Date(currentEdit.timestamp), 'yyyy-MM-dd hh:mm')"
+    :title="account && format(new Date(account.timestamp), 'yyyy-MM-dd hh:mm')"
     :duration="0.2"
     :overlay-style="{ background: 'rgba(0, 0, 0, .1)' }"
     @close="emit('close')"
   >
     <div px="4" pb="8">
       <van-cell-group v-if="currentEdit">
-        <van-cell>
-          <div flex justify="between">
-            <span>金额</span>
-            <span>￥ {{ currentEdit.amount }}</span>
-          </div>
-        </van-cell>
+        <EditContainer title="金额">
+          <template #cell>
+            <div flex justify="between">
+              <span>金额</span>
+              <span>￥ {{ currentEdit.amount }}</span>
+            </div>
+          </template>
+        </EditContainer>
+
         <van-cell>
           <div flex justify="between">
             <span>分类</span>
             <Category :category="currentEdit.category"></Category>
           </div>
         </van-cell>
+
         <tag-selector v-model="currentEdit.tags"></tag-selector>
-        <van-cell>
-          <div flex justify="between">
-            <span>时间</span>
-            <span>{{ format(new Date(currentEdit.timestamp), 'yyyy-MM-dd hh:mm:ss') }}</span>
-          </div>
-        </van-cell>
+
+        <EditContainer title="时间">
+          <template #cell>
+            <div flex justify="between">
+              <span>时间</span>
+              <span>{{ format(new Date(currentEdit.timestamp), 'yyyy-MM-dd hh:mm:ss') }}</span>
+            </div>
+          </template>
+        </EditContainer>
+
         <field
           v-model="currentEdit.description"
           rows="2"
