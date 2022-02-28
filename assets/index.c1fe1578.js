@@ -1,1 +1,0 @@
-import{_ as e}from"./index.d854e18b.js";import{b as o,o as t,g as r,k as s}from"./vendor.6183e4c9.js";import"~cobook";const a={pt:"4"},f=o({setup(c){return(n,_)=>(t(),r("div",a,[s(e)]))}});export{f as default};
