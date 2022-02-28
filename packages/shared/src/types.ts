@@ -5,17 +5,25 @@ export interface RawCoBookConfig {
 
   template?: Template[];
 
-  tags?: Array<string | ColorItem>;
+  tags?: Array<string | TagItem>;
 
-  categories?: Array<string | ColorItem>;
+  categories?: Array<string | CategoryItem>;
 
   wrangler?: WranglerConfig & { url: string; kv: string };
 }
 
-export interface ColorItem {
+export interface TagItem {
   name: string;
 
   color: string;
+}
+
+export interface CategoryItem {
+  name: string;
+
+  color: string;
+
+  icon: string;
 }
 
 export interface Template {

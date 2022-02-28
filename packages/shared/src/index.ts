@@ -1,8 +1,10 @@
-import { RawCoBookConfig, Template, ColorItem, AccountItem } from './types';
+import { RawCoBookConfig, Template, TagItem, CategoryItem, AccountItem } from './types';
+import { ColorList } from './constant';
+import { random } from './utils';
 
 export * from './client';
 
-export { RawCoBookConfig, Template, ColorItem, AccountItem };
+export { RawCoBookConfig, Template, TagItem, CategoryItem, AccountItem };
 
 export function transformConfig(config?: RawCoBookConfig) {
   const tags = uniq(
@@ -18,20 +20,23 @@ export function transformConfig(config?: RawCoBookConfig) {
     name: config?.name ?? 'CoBook',
     baseURL: config?.wrangler?.url ?? '',
     template: config?.template ?? [],
-    tags: transfromColorItem(tags),
-    categories: transfromColorItem(categories)
+    tags: transfromTagItem(tags),
+    categories: transfromTagItem(categories)
   };
 }
 
-function transfromColorItem(items: Array<string | ColorItem>): ColorItem[] {
-  const ans: ColorItem[] = [];
+function transfromTagItem(items: Array<string | TagItem>): TagItem[] {
+  const ans: TagItem[] = [];
   for (const item of items) {
     if (typeof item === 'string') {
       ans.push({
         name: item,
-        color: '#F2F3F5'
+        color: ColorList[random(ColorList.length)]
       });
     } else {
+      if (!item.color) {
+        item.color = ColorList[random(ColorList.length)];
+      }
       ans.push(item);
     }
   }

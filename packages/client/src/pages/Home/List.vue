@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue';
-import { List, Tag, ActionSheet, Notify } from 'vant';
+import { List, ActionSheet, Notify } from 'vant';
 import format from 'date-fns/format';
 
 import { AccountItem } from '@cobook/shared';
@@ -44,7 +44,7 @@ const deleteAccount = async (current?: AccountItem) => {
             <span inline-block mr="2" text="gray-400">{{
               format(new Date(item.timestamp), 'yyyy-MM-dd hh:mm')
             }}</span>
-            <Tag>{{ item.category }}</Tag>
+            <Category :category="item.category"></Category>
           </span>
           <span>￥ {{ item.amount }}</span>
         </div>
@@ -68,14 +68,14 @@ const deleteAccount = async (current?: AccountItem) => {
           <van-cell>
             <div flex justify="between">
               <span>分类</span>
-              <Tag>{{ currentEdit.category }}</Tag>
+              <Category :category="currentEdit.category"></Category>
             </div>
           </van-cell>
           <van-cell>
             <div flex justify="between">
               <span>标签</span>
               <span>
-                <Tag ml="1" v-for="tag in currentEdit.tags">{{ tag }}</Tag>
+                <Tag ml="1" v-for="tag in currentEdit.tags" :tag="tag"></Tag>
               </span>
             </div>
           </van-cell>

@@ -25,7 +25,7 @@ declare module 'virtual:pwa-register' {
 }
 
 declare module '~cobook' {
-  import type { ColorItem, Template } from '@cobook/shared';
+  import type { TagItem, CategoryItem, Template } from '@cobook/shared';
 
   const name: string;
 
@@ -33,7 +33,7 @@ declare module '~cobook' {
 
   const template: Template[];
 
-  const categories: ColorItem[];
+  const categories: CategoryItem[];
 
-  const tags: ColorItem[];
+  const tags: TagItem[];
 }

@@ -9,7 +9,6 @@ import {
   GridItem,
   Tab,
   Tabs,
-  Tag,
   Loading,
   Notify
 } from 'vant';
@@ -99,7 +98,7 @@ const submit = async () => {
       <cell>
         <div flex justify="between">
           <span>分类</span>
-          <Tag>{{ cat }}</Tag>
+          <Category :category="cat"></Category>
         </div>
       </cell>
 

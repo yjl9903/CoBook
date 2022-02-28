@@ -8,13 +8,24 @@ import 'uno.css';
 
 import App from './App.vue';
 import { router } from './router';
+import Tag from './components/Tag.vue';
+import Category from './components/Category.vue';
 
 registerSW({});
 
 const pinia = createPinia();
 pinia.use(piniaPluginPersistedstate);
 
-createApp(App).use(Cell).use(CellGroup).use(Button).use(Image).use(router).use(pinia).mount('#app');
+createApp(App)
+  .component('Category', Category)
+  .component('Tag', Tag)
+  .use(Cell)
+  .use(CellGroup)
+  .use(Button)
+  .use(Image)
+  .use(router)
+  .use(pinia)
+  .mount('#app');
 
 {
   // Fix mobild scale
