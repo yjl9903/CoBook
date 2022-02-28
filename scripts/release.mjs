@@ -16,6 +16,8 @@ for (const pkg of packages) {
   await fs.writeJSON(pkg, json, { spaces: 2 });
 }
 
+await $`pnpm run format`;
+await $`pnpm run build`;
 await $`git add .`;
 await $`git commit -m "release: v${version}"`;
 await $`git tag -a "v${version}" -m "release: v${version}"`;
