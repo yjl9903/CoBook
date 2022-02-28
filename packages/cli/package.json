@@ -34,9 +34,6 @@
     "@cobook/shared": "workspace:*",
     "@cobook/vite-plugin": "workspace:*",
     "@iarna/toml": "^2.2.5",
-    "@unocss/preset-attributify": "^0.26.3",
-    "@unocss/preset-uno": "^0.26.3",
-    "@unocss/transformer-directives": "^0.26.3",
     "cac": "^6.7.12",
     "date-fns": "^2.28.0",
     "debug": "^4.3.3",
@@ -44,16 +41,7 @@
     "js-yaml": "^4.1.0",
     "kolorist": "^1.5.1",
     "miniflare": "^2.3.0",
-    "pinia": "^2.0.11",
-    "pinia-plugin-persistedstate": "^1.2.3",
-    "unocss": "^0.26.3",
-    "vant": "^3.4.5",
-    "vite": "^2.8.0",
-    "vite-plugin-pwa": "^0.11.13",
-    "vite-plugin-style-import": "^2.0.0",
-    "vue": "^3.2.31",
-    "vue-router": "4",
-    "workbox-window": "^6.4.2"
+    "vite": "^2.8.0"
   },
   "devDependencies": {
     "@miniflare/shared": "^2.3.0",
