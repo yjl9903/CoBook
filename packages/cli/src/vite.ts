@@ -31,7 +31,7 @@ export async function resolveViteOption(option: CoBookCliOption) {
       publicDir: path.join(option.root, 'public'),
       server: {
         fs: {
-          allow: [searchForWorkspaceRoot(option.clientRoot)]
+          allow: [searchForWorkspaceRoot(option.root), searchForWorkspaceRoot(option.clientRoot)]
         }
       },
       optimizeDeps: {

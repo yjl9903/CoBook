@@ -9,6 +9,7 @@ export function createCoBookPlugin(): Plugin {
 
   return {
     name: 'cobook',
+    enforce: 'pre',
     configResolved(resolvedConfig) {
       // @ts-ignore
       config = transformConfig(resolvedConfig.cobook);
