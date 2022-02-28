@@ -35,7 +35,7 @@ const currentEdit = ref();
       </van-cell>
     </List>
 
-    <Editor :account="currentEdit"></Editor>
+    <Editor :account="currentEdit" @close="currentEdit = undefined"></Editor>
   </van-cell-group>
 </template>
 

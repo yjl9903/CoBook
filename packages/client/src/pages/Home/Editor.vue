@@ -10,7 +10,15 @@ import TagSelector from './TagSelector.vue';
 
 const props = defineProps<{ account: AccountItem }>();
 
+const emit = defineEmits<{ (e: 'close'): void }>();
+
 const currentEdit = ref<AccountItem | undefined>(props.account);
+
+watch(currentEdit, (value) => {
+  if (!!value) {
+    emit('close');
+  }
+})
 
 watch(
   () => props.account,
