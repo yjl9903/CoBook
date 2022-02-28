@@ -13,7 +13,7 @@ import presetUno from '@unocss/preset-uno';
 import presetAttributify from '@unocss/preset-attributify';
 import transformerDirective from '@unocss/transformer-directives';
 
-import { format } from 'date-fns'
+import { format } from 'date-fns';
 
 const OFFICIAL_REPO = 'yjl9903/CoBook';
 
