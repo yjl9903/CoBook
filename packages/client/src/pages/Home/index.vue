@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref, inject, Ref } from 'vue';
 import {
+  Icon,
   Field,
   NumberKeyboard,
   CellGroup,
@@ -140,8 +141,14 @@ const submit = async () => {
       </cell>
     </cell-group>
 
-    <div style="margin: 16px">
+    <div style="margin: 16px" flex justify="center">
       <van-button round block type="success" @click="submit">记录</van-button>
+      <van-button ml="2" px="0" w="16" url="weixin://" round>
+        <icon name="/img/wechat.svg" size="1.25rem" />
+      </van-button>
+      <van-button ml="2" px="0" w="16" url="alipay://platformapi/startapp?appId=20000056" round>
+        <icon name="/img/alipay.svg" size="1.25rem" />
+      </van-button>
     </div>
 
     <account-list></account-list>
