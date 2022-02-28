@@ -19,10 +19,7 @@
   "license": "MIT",
   "author": "XLor",
   "files": [
-    "src",
-    "public",
-    "index.html",
-    "vite.config.ts"
+    "README.md"
   ],
   "scripts": {
     "build": "vue-tsc --noEmit --skipLibCheck && vite build",
