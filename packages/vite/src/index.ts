@@ -20,8 +20,7 @@ export function createCoBookPlugin(): Plugin {
     resolveId(id) {
       if (id === VFileName) {
         return {
-          id: VFileName,
-          external: 'absolute'
+          id: VFileName
         };
       }
     },
