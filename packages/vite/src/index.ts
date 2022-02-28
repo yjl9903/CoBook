@@ -4,6 +4,8 @@ import { RawCoBookConfig, transformConfig } from '@cobook/shared';
 
 const debug = createDebug('cobook:vite');
 
+const VFileName = '~cobook';
+
 export function createCoBookPlugin(): Plugin {
   let config: Omit<Required<RawCoBookConfig>, 'wrangler'>;
 
@@ -16,13 +18,22 @@ export function createCoBookPlugin(): Plugin {
       debug(config);
     },
     resolveId(id) {
-      if (id === '~cobook') {
-        return '~cobook.json';
+      if (id === VFileName) {
+        return {
+          id: VFileName,
+          external: 'absolute'
+        };
       }
     },
     load(id) {
-      if (id === '~cobook.json') {
-        return JSON.stringify(config, null, 2);
+      if (id === VFileName) {
+        const code: string[] = [];
+        for (const key in config) {
+          // @ts-ignore
+          const value = config[key];
+          code.push(`export const ${key} = ${JSON.stringify(value)};`);
+        }
+        return code.join('\n');
       }
     }
   };
