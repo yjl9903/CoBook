@@ -39,12 +39,20 @@ const formatter = (text: string) => {
     readonly
     clickable
     clearable
+    input-align="right"
+    error-message-align="right"
     :formatter="formatter"
     :maxlength="10"
     :error-message="amtErrMsg"
-    error-message-align="right"
     @touchstart.stop="show = true"
-    input-align="right"
   />
-  <number-keyboard v-model="amt" extra-key="." :show="show" :maxlength="10" @blur="show = false" />
+  <number-keyboard
+    v-model="amt"
+    theme="custom"
+    close-button-text="确认"
+    extra-key="."
+    :show="show"
+    :maxlength="10"
+    @blur="show = false"
+  />
 </template>

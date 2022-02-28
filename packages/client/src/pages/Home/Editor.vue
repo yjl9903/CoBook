@@ -68,17 +68,7 @@ const deleteAccount = async () => {
   >
     <div px="4" pb="8">
       <van-cell-group v-if="currentEdit">
-        <!-- <van-cell>
-          <div flex justify="between">
-            <span>金额</span>
-            <span font="mono">￥{{ currentEdit.amount }}</span>
-          </div>
-        </van-cell> -->
-
         <input-amount v-model="currentEdit.amount"></input-amount>
-        <!-- <template #default>
-            <input-amount v-model="currentEdit.amount"></input-amount>
-          </template> -->
 
         <van-cell>
           <div flex justify="between">

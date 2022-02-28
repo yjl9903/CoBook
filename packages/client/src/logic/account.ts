@@ -2,6 +2,7 @@ import { defineStore } from 'pinia';
 
 import { AccountItem, AccountPayload } from '@cobook/shared';
 
+import { tags, categories } from '~cobook';
 import { useAuthStore } from './auth';
 
 export const useAccountStore = defineStore('account', {
@@ -14,6 +15,13 @@ export const useAccountStore = defineStore('account', {
     async init() {
       const authStore = useAuthStore();
       const accounts = await authStore.client.list();
+
+      // filter removed tag
+      const tagSet = new Set(tags.map((t) => t.name));
+      for (const account of accounts) {
+        account.tags = account.tags.filter((t) => tagSet.has(t));
+      }
+
       this.accounts = accounts;
     },
     async push(payload: AccountPayload) {

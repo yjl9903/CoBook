@@ -97,11 +97,7 @@ const submit = async () => {
         error-message-align="right"
         @touchstart.stop="show = true"
         input-align="right"
-      >
-        <!-- <template #extra>
-          <span>￥ </span>
-        </template> -->
-      </field>
+      />
 
       <cell>
         <div flex justify="between">
@@ -156,6 +152,8 @@ const submit = async () => {
 
     <number-keyboard
       v-model="amt"
+      theme="custom"
+      close-button-text="确认"
       extra-key="."
       :show="show"
       :maxlength="10"

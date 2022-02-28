@@ -1,6 +1,12 @@
 <script setup lang="ts">
 import { ref, toRefs, onBeforeUpdate } from 'vue';
-import { ActionSheet, Checkbox, CheckboxGroup, CheckboxInstance } from 'vant';
+import {
+  ActionSheet,
+  Checkbox,
+  CheckboxGroup,
+  CheckboxGroupInstance,
+  CheckboxInstance
+} from 'vant';
 
 import { tags as allTags } from '~cobook';
 
@@ -17,6 +23,10 @@ onBeforeUpdate(() => {
 });
 const toggle = (index: number) => {
   checkboxRefs.value[index].toggle();
+};
+const closeAll = () => {
+  tags.value = [];
+  emit('update:modelValue', []);
 };
 </script>
 
@@ -60,6 +70,7 @@ const toggle = (index: number) => {
               ></span>
               <span>{{ item.name }}</span>
             </div>
+
             <template #right-icon>
               <checkbox
                 :name="item.name"
@@ -70,6 +81,17 @@ const toggle = (index: number) => {
             </template>
           </van-cell>
         </van-cell-group>
+
+        <div mt="4" flex justify="center">
+          <van-button type="success" block mr="2" @click="show = false">确认</van-button>
+          <van-button
+            type="danger"
+            icon="cross"
+            rounded="full"
+            round
+            @click="closeAll"
+          ></van-button>
+        </div>
       </checkbox-group>
     </div>
   </action-sheet>
