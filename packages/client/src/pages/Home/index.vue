@@ -141,7 +141,7 @@ const submit = async () => {
       </cell>
     </cell-group>
 
-    <div style="margin: 16px" flex justify="center">
+    <div style="margin: 16px" class="icon-btn" flex justify="center">
       <van-button round block type="success" @click="submit">记录</van-button>
       <van-button ml="2" px="0" w="16" url="weixin://" round>
         <icon name="/img/wechat.svg" size="1.25rem" />
@@ -168,5 +168,9 @@ const submit = async () => {
 <style>
 #home {
   background: rgb(247, 247, 247);
+}
+
+.icon-btn .van-button__content {
+  @apply flex items-center justify-center;
 }
 </style>
