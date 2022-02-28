@@ -2,7 +2,7 @@
 
 await fs.copy('./packages/client', './packages/cli/client', {
   filter(p) {
-    return !/node_modules|\\dist|\/dist|tsconfig|README|git|package/.test(p);
+    return !/node_modules|dist|tsconfig|README|git|package\.json/.test(p);
   }
 });
 
