@@ -20,6 +20,7 @@ import { EnterHomeKey } from '@/constant';
 
 import AccountList from './List.vue';
 import TagSelector from './TagSelector.vue';
+import CatSelector from './CatSelector.vue';
 
 inject<Ref<boolean>>(EnterHomeKey)!.value = true;
 
@@ -99,12 +100,7 @@ const submit = async () => {
         input-align="right"
       />
 
-      <cell>
-        <div flex justify="between">
-          <span>分类</span>
-          <Category :category="cat"></Category>
-        </div>
-      </cell>
+      <cat-selector v-model="cat"></cat-selector>
 
       <tag-selector v-model="tags"></tag-selector>
 

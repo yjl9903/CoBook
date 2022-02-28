@@ -1,12 +1,6 @@
 <script setup lang="ts">
 import { ref, toRefs, onBeforeUpdate } from 'vue';
-import {
-  ActionSheet,
-  Checkbox,
-  CheckboxGroup,
-  CheckboxGroupInstance,
-  CheckboxInstance
-} from 'vant';
+import { ActionSheet, Checkbox, CheckboxGroup, CheckboxInstance } from 'vant';
 
 import { tags as allTags } from '~cobook';
 

@@ -7,8 +7,9 @@ import { AccountItem } from '@cobook/shared';
 import { useAccountStore } from '@/logic/account';
 
 import TagSelector from './TagSelector.vue';
-import EditContainer from './EditContainer.vue';
+import CatSelector from './CatSelector.vue';
 import InputAmount from './InputAmount.vue';
+import EditContainer from './EditContainer.vue';
 
 const props = defineProps<{ account: AccountItem }>();
 
@@ -70,12 +71,7 @@ const deleteAccount = async () => {
       <van-cell-group v-if="currentEdit">
         <input-amount v-model="currentEdit.amount"></input-amount>
 
-        <van-cell>
-          <div flex justify="between">
-            <span>分类</span>
-            <Category :category="currentEdit.category"></Category>
-          </div>
-        </van-cell>
+        <cat-selector v-model="currentEdit.category"></cat-selector>
 
         <tag-selector v-model="currentEdit.tags"></tag-selector>
 
