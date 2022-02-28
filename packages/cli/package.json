@@ -21,7 +21,7 @@
     "cobook": "./cobook.mjs"
   },
   "files": [
-    "app",
+    "client",
     "worker",
     "dist",
     "cobook.mjs"
