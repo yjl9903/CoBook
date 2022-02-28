@@ -7,6 +7,7 @@ import { registerSW } from 'virtual:pwa-register';
 import 'uno.css';
 
 import App from './App.vue';
+import './layout.css';
 import { router } from './router';
 import Tag from './components/Tag.vue';
 import Category from './components/Category.vue';

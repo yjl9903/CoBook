@@ -10,7 +10,7 @@ const commit = __GITHUB_SHA__;
     <div class="flex justify-center font-mono h-4">
       <a
         class="text-$text-light-1 inline-flex items-center mr-2"
-        href="https://github.com/XLorPaste"
+        href="https://github.com/yjl9903/CoBook"
         target="_blank"
         ><icon-github class="align-middle"></icon-github
       ></a>
