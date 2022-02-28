@@ -1,5 +1,7 @@
 /// <reference types="vite/client" />
 
+declare const __BUILD_TIME__: string;
+
 declare const __FingerprintJS__: string | undefined;
 
 declare const __GITHUB_SHA__: string | undefined;

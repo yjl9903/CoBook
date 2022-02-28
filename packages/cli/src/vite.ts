@@ -35,7 +35,7 @@ export async function resolveViteOption(option: CoBookCliOption) {
         }
       },
       optimizeDeps: {
-        include: ['pinia', 'pinia-plugin-persistedstate']
+        
       }
     };
 

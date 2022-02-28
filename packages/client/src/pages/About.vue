@@ -5,6 +5,7 @@ import { fingerprint } from '@/logic/fingerprint';
 
 const version = __VERSION__;
 const commit = __GITHUB_SHA__;
+const buildTime = __BUILD_TIME__;
 const fg = ref('');
 
 fingerprint().then(({ visitorId }) => (fg.value = visitorId));
@@ -13,6 +14,10 @@ fingerprint().then(({ visitorId }) => (fg.value = visitorId));
 <template>
   <div class="text-center text-gray-400 pt-4">
     <div mb="8" font="mono">FingerPrint: {{ fg }}</div>
+    <div mb="8">
+      <span>构建时间</span>
+      <span class="font-mono">: {{ buildTime }}</span>
+    </div>
     <div h="8" flex items="center" justify="center" font="mono">
       <a
         class="text-$text-light-1 inline-flex items-center mr-2"

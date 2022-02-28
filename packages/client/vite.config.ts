@@ -13,6 +13,8 @@ import presetUno from '@unocss/preset-uno';
 import presetAttributify from '@unocss/preset-attributify';
 import transformerDirective from '@unocss/transformer-directives';
 
+import { format } from 'date-fns'
+
 const OFFICIAL_REPO = 'yjl9903/CoBook';
 
 const version = findPackage().version;
@@ -25,7 +27,8 @@ export default defineConfig({
       process.env.GITHUB_REPOSITORY === OFFICIAL_REPO &&
       process.env.GITHUB_SHA &&
       `"${process.env.GITHUB_SHA}"`,
-    __VERSION__: `"${version}"`
+    __VERSION__: `"${version}"`,
+    __BUILD_TIME__: `"${format(new Date(), 'yyyy-MM-dd HH:mm')}"`
   },
   resolve: {
     alias: {
