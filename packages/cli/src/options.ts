@@ -53,11 +53,11 @@ async function getClientRoot(root: string) {
     path.join(__dirname, '../../client')
   ];
   for (const p of paths) {
-    if (existsSync(path.join(p, 'package.json'))) {
+    if (existsSync(path.join(p, 'vite.config.ts')) || existsSync(path.join(p, 'vite.config.js'))) {
       return p;
     }
   }
-  throw new Error('Can not find web app');
+  throw new Error('Can not find client');
 }
 
 async function getWorkerRoot(root: string) {
@@ -72,5 +72,5 @@ async function getWorkerRoot(root: string) {
       return p;
     }
   }
-  throw new Error('Can not find web app');
+  throw new Error('Can not find worker');
 }
