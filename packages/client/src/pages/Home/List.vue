@@ -55,7 +55,7 @@ const deleteAccount = async (current?: AccountItem) => {
       v-model:show="showEdit"
       :title="currentEdit && format(new Date(currentEdit.timestamp), 'yyyy-MM-dd hh:mm')"
       :duration="0.2"
-      :overlay-style="{ background: 'transparent' }"
+      :overlay-style="{ background: 'rgba(0, 0, 0, .1)' }"
     >
       <div px="4" pb="8">
         <van-cell-group v-if="currentEdit">
