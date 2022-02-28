@@ -19,7 +19,7 @@ const show = ref(false);
     :overlay-style="{ background: 'rgba(0, 0, 0, .1)' }"
   >
     <div px="4" pb="8">
-      <slot></slot>
+      <slot :close="() => (show = false)"></slot>
     </div>
   </action-sheet>
 </template>

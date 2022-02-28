@@ -26,7 +26,7 @@ const currentEdit = ref();
         <div flex justify="between" items="center">
           <span>
             <span inline-block mr="2" text="gray-400">{{
-              format(new Date(item.timestamp), 'yyyy-MM-dd hh:mm')
+              format(new Date(item.timestamp), 'yyyy-MM-dd HH:mm')
             }}</span>
             <Category :category="item.category"></Category>
           </span>

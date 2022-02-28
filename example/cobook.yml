@@ -5,30 +5,35 @@ template:
     icon: /img/breakfast.svg
     category: Food
     tags: ['Breakfast']
-    amount: 10
   - name: Lunch
     icon: /img/lunch.svg
     category: Food
     tags: ['Lunch']
-    amount: 10
   - name: Dinner
     icon: /img/dinner.svg
     category: Food
     tags: ['Dinner']
-    amount: 10
   - name: Tea
     icon: /img/tea.svg
     category: Drink
     tags: ['Tea']
+    amount: 10
+  - name: Moon
+    icon: /img/Intertwined.png
+    category: Game
+    tags: ['Genshin Impact']
+    amount: 30
 
 categories:
   - Food
   - Drink
+  - Game
 
 tags:
   - Breakfast
   - Lunch
   - Dinner
+  - Genshin Impact
 
 wrangler:
   account_id: 7cbfb60ad7052f0d8cf590a51e024987

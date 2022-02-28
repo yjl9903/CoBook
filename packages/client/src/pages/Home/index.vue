@@ -125,15 +125,21 @@ const submit = async () => {
                 v-for="t in template.filter((t) => t.category === category.name)"
                 @click="useTemplate(t)"
               >
-                <div flex flex-col items="center" justify="center">
-                  <van-image :src="t.icon" height="50%" width="50%">
+                <div
+                  flex
+                  flex-col
+                  items="center"
+                  justify="center"
+                  class="content-center justify-items-center"
+                >
+                  <van-image :src="t.icon" fit="scale-down" class="max-h-[50%] max-w-[50%]">
                     <template v-slot:loading>
                       <div h="full" w="full">
                         <loading type="spinner" size="20" />
                       </div>
                     </template>
                   </van-image>
-                  <span class="van-grid-item__text" mt="2">{{ t.name }}</span>
+                  <span class="van-grid-item__text" mt="2" text="center">{{ t.name }}</span>
                 </div>
               </grid-item>
             </grid>

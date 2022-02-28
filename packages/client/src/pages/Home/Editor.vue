@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { ref, watch } from 'vue';
-import { Field, ActionSheet, Notify } from 'vant';
+import { computed, ref, watch } from 'vue';
+import { Field, ActionSheet, DatetimePicker, Notify } from 'vant';
 import format from 'date-fns/format';
 
 import { AccountItem } from '@cobook/shared';
@@ -15,6 +15,16 @@ const emit = defineEmits<{ (e: 'close'): void }>();
 
 const currentEdit = ref<AccountItem | null>(props.account);
 const showEdit = ref(false);
+const timestamp = computed({
+  get() {
+    return currentEdit.value?.timestamp ? new Date(currentEdit.value?.timestamp) : new Date();
+  },
+  set(d: Date) {
+    if (currentEdit.value?.timestamp) {
+      currentEdit.value!.timestamp = d.toISOString();
+    }
+  }
+});
 
 watch(
   () => props.account,
@@ -50,7 +60,7 @@ const deleteAccount = async () => {
 <template>
   <action-sheet
     v-model:show="showEdit"
-    :title="account && format(new Date(account.timestamp), 'yyyy-MM-dd hh:mm')"
+    :title="account && format(new Date(account.timestamp), 'yyyy-MM-dd HH:mm')"
     :duration="0.2"
     :overlay-style="{ background: 'rgba(0, 0, 0, .1)' }"
     @close="emit('close')"
@@ -79,8 +89,18 @@ const deleteAccount = async () => {
           <template #cell>
             <div flex justify="between">
               <span>时间</span>
-              <span>{{ format(new Date(currentEdit.timestamp), 'yyyy-MM-dd hh:mm:ss') }}</span>
+              <span>{{ format(new Date(currentEdit.timestamp), 'yyyy-MM-dd HH:mm:ss') }}</span>
             </div>
+          </template>
+
+          <template #default="{ close }">
+            <datetime-picker
+              v-model="timestamp"
+              type="datetime"
+              :max-date="new Date(new Date().getTime() + 3600 * 1000)"
+              @confirm="close"
+              @cancel="() => ((timestamp = new Date(account.timestamp)), close())"
+            ></datetime-picker>
           </template>
         </EditContainer>
 
