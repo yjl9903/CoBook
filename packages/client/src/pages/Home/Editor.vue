@@ -14,12 +14,6 @@ const emit = defineEmits<{ (e: 'close'): void }>();
 
 const currentEdit = ref<AccountItem | undefined>(props.account);
 
-watch(currentEdit, (value) => {
-  if (!!value) {
-    emit('close');
-  }
-});
-
 watch(
   () => props.account,
   (account) => {
@@ -63,6 +57,7 @@ const deleteAccount = async () => {
     :title="currentEdit && format(new Date(currentEdit.timestamp), 'yyyy-MM-dd hh:mm')"
     :duration="0.2"
     :overlay-style="{ background: 'rgba(0, 0, 0, .1)' }"
+    @close="emit('close')"
   >
     <div px="4" pb="8">
       <van-cell-group v-if="currentEdit">
