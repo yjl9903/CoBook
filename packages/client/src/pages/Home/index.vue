@@ -46,11 +46,17 @@ const useTemplate = (template: Omit<Template, 'name' | 'icon'>) => {
   cat.value = template.category;
   if (template.amount) {
     amt.value = String(template.amount);
+  } else {
+    amt.value = '';
   }
   if (template.tags) {
     tags.value = template.tags;
+  } else {
+    tags.value = [];
   }
   if (template.description) {
+    description.value = '';
+  } else {
     description.value = '';
   }
 };
