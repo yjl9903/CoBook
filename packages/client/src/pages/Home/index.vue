@@ -44,7 +44,7 @@ const cat = ref(categories.length > 0 ? categories[0].name : '');
 const tags = ref([] as string[]);
 const description = ref('');
 
-const useTemplate = (template: Omit<Template, 'name' | 'icon'>) => {
+const useTemplate = (template: Omit<Template, 'icon'>) => {
   cat.value = template.category;
   if (template.amount) {
     amt.value = String(template.amount);
@@ -57,9 +57,9 @@ const useTemplate = (template: Omit<Template, 'name' | 'icon'>) => {
     tags.value = [];
   }
   if (template.description) {
-    description.value = '';
+    description.value = template.description;
   } else {
-    description.value = '';
+    description.value = template.name;
   }
 };
 
@@ -112,7 +112,7 @@ const submit = async () => {
               <grid-item
                 icon="success"
                 :text="`默认`"
-                @click="useTemplate({ category: category.name })"
+                @click="useTemplate({ name: '', category: category.name })"
               ></grid-item>
               <grid-item
                 v-for="t in template.filter((t) => t.category === category.name)"
