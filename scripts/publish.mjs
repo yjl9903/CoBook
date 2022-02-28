@@ -2,11 +2,11 @@
 
 await fs.copy('./packages/client', './packages/cli/client', {
   filter(p) {
-    return /node_modules|\\dist\\/.test(p);
+    return !/node_modules|\\dist|\/dist|tsconfig|README|git/.test(p);
   }
 });
 
-await fs.copy('./packages/worker', './packages/cli/worker/dist');
+await fs.copy('./packages/worker/dist', './packages/cli/worker');
 
 await $`pnpm publish -r --access public`;
 
