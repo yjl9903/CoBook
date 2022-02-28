@@ -1,7 +1,10 @@
 {
   "name": "@cobook/shared",
   "version": "1.0.0",
-  "description": "",
+  "description": "CoBook Shared Package",
+  "keywords": [
+    "CoBook"
+  ],
   "homepage": "https://github.com/yjl9903/CoBook#readme",
   "bugs": {
     "url": "https://github.com/yjl9903/CoBook/issues"
@@ -23,6 +26,9 @@
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "tsup-node src/index.ts --format esm,cjs --splitting --dts"
   },

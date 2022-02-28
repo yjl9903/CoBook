@@ -1,7 +1,11 @@
 {
   "name": "@cobook/cli",
   "version": "1.0.0",
-  "description": "",
+  "description": "CoBook CLI",
+  "keywords": [
+    "CoBook",
+    "CLI"
+  ],
   "homepage": "https://github.com/yjl9903/CoBook#readme",
   "bugs": {
     "url": "https://github.com/yjl9903/CoBook/issues"
@@ -18,6 +22,7 @@
   },
   "files": [
     "app",
+    "worker",
     "dist",
     "cobook.mjs"
   ],

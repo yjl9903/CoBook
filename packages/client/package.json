@@ -1,6 +1,29 @@
 {
   "name": "@cobook/client",
   "version": "0.0.0",
+  "description": "CoBook Mobile Client",
+  "keywords": [
+    "CoBook",
+    "Vue",
+    "Vite",
+    "PWA"
+  ],
+  "homepage": "https://github.com/yjl9903/CoBook#readme",
+  "bugs": {
+    "url": "https://github.com/yjl9903/CoBook/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yjl9903/CoBook.git"
+  },
+  "license": "MIT",
+  "author": "XLor",
+  "files": [
+    "src",
+    "public",
+    "index.html",
+    "vite.config.ts"
+  ],
   "scripts": {
     "build": "vue-tsc --noEmit --skipLibCheck && vite build",
     "dev": "vite --host",

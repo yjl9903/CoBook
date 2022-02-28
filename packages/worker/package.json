@@ -1,8 +1,11 @@
 {
-  "name": "cobook-worker",
+  "name": "@cobook/worker",
   "version": "1.0.0",
   "private": true,
-  "description": "",
+  "description": "CoBook Worker",
+  "keywords": [
+    "CoBook"
+  ],
   "homepage": "https://github.com/yjl9903/CoBook#readme",
   "bugs": {
     "url": "https://github.com/yjl9903/CoBook/issues"

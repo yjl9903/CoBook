@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "keywords": [
+    "CoBook",
     "vite-plugin"
   ],
   "homepage": "https://github.com/yjl9903/CoBook#readme",
@@ -26,6 +27,9 @@
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "tsup-node src/index.ts --format esm,cjs --splitting --dts"
   },
