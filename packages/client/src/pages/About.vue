@@ -16,7 +16,7 @@ fingerprint().then(({ visitorId }) => (fg.value = visitorId));
     <div mb="8" font="mono">FingerPrint: {{ fg }}</div>
     <div mb="8">
       <span>构建时间</span>
-      <span class="font-mono">: {{ buildTime }}</span>
+      <span font="mono">: {{ buildTime }}</span>
     </div>
     <div h="8" flex items="center" justify="center" font="mono">
       <a
