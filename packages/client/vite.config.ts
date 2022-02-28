@@ -35,7 +35,8 @@ export default defineConfig({
   plugins: [
     vue(),
     createStyleImportPlugin({
-      resolves: [VantResolve()]
+      resolves: [VantResolve()],
+      exclude: []
     }),
     VitePWA({
       registerType: 'autoUpdate',
