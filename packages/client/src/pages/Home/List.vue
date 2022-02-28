@@ -12,6 +12,14 @@ const store = useAccountStore();
 store.init();
 
 const currentEdit = ref();
+
+const isInlineDescription = (d?: string) => {
+  if (d) {
+    return d.length <= 10 && d.replace(/[^\n]/g, '').length === 0;
+  } else {
+    return false;
+  }
+};
 </script>
 
 <template>
@@ -24,13 +32,14 @@ const currentEdit = ref();
         @click="currentEdit = item"
       >
         <div flex justify="between" items="center">
-          <span>
+          <span inline-flex items="center">
             <span inline-block mr="2" text="gray-400">{{
               format(new Date(item.timestamp), 'yyyy-MM-dd HH:mm')
             }}</span>
             <Category :category="item.category"></Category>
+            <span ml="2" v-if="isInlineDescription(item.description)">{{ item.description }}</span>
           </span>
-          <span>￥ {{ item.amount }}</span>
+          <span font="mono">￥{{ item.amount }}</span>
         </div>
       </van-cell>
     </List>

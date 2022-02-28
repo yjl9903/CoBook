@@ -8,6 +8,7 @@ import { useAccountStore } from '@/logic/account';
 
 import TagSelector from './TagSelector.vue';
 import EditContainer from './EditContainer.vue';
+import InputAmount from './InputAmount.vue';
 
 const props = defineProps<{ account: AccountItem }>();
 
@@ -67,14 +68,17 @@ const deleteAccount = async () => {
   >
     <div px="4" pb="8">
       <van-cell-group v-if="currentEdit">
-        <EditContainer title="金额">
-          <template #cell>
-            <div flex justify="between">
-              <span>金额</span>
-              <span>￥ {{ currentEdit.amount }}</span>
-            </div>
-          </template>
-        </EditContainer>
+        <!-- <van-cell>
+          <div flex justify="between">
+            <span>金额</span>
+            <span font="mono">￥{{ currentEdit.amount }}</span>
+          </div>
+        </van-cell> -->
+
+        <input-amount v-model="currentEdit.amount"></input-amount>
+        <!-- <template #default>
+            <input-amount v-model="currentEdit.amount"></input-amount>
+          </template> -->
 
         <van-cell>
           <div flex justify="between">
