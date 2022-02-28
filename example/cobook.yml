@@ -4,22 +4,22 @@ template:
   - name: Breakfast
     icon: /img/breakfast.svg
     category: Food
-    tags: ['Food', 'Breakfast']
+    tags: ['Breakfast']
     amount: 10
   - name: Lunch
     icon: /img/lunch.svg
     category: Food
-    tags: ['Food', 'Lunch']
+    tags: ['Lunch']
     amount: 10
   - name: Dinner
     icon: /img/dinner.svg
     category: Food
-    tags: ['Food', 'Dinner']
+    tags: ['Dinner']
     amount: 10
   - name: Tea
     icon: /img/tea.svg
     category: Drink
-    tags: ['Drink']
+    tags: ['Tea']
 
 categories:
   - Food

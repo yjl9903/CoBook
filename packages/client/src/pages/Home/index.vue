@@ -43,7 +43,7 @@ const description = ref('');
 const useTemplate = (template: Omit<Template, 'name' | 'icon'>) => {
   cat.value = template.category;
   if (template.amount) {
-    amt.value = template.amount;
+    amt.value = String(template.amount);
   }
   if (template.tags) {
     tags.value = template.tags;
@@ -99,6 +99,15 @@ const submit = async () => {
         <div flex justify="between">
           <span>分类</span>
           <Category :category="cat"></Category>
+        </div>
+      </cell>
+
+      <cell>
+        <div flex justify="between">
+          <span>标签</span>
+          <span>
+            <Tag ml="1" v-for="tag in tags" :tag="tag"></Tag>
+          </span>
         </div>
       </cell>
 
