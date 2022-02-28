@@ -34,6 +34,7 @@ const toggle = (index: number) => {
     v-model:show="show"
     title="标签"
     :duration="0.2"
+    :overlay-class="['outside']"
     :overlay-style="{ background: 'rgba(0, 0, 0, .1)' }"
   >
     <div px="4" pb="8">

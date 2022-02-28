@@ -24,10 +24,3 @@ const show = ref(false);
     </div>
   </action-sheet>
 </template>
-
-<style>
-.outside {
-  -webkit-transform: translate3d(0, 0, 1px);
-  transform: translate3d(0, 0, 1px);
-}
-</style>
