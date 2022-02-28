@@ -16,6 +16,7 @@ const show = ref(false);
     v-model:show="show"
     :title="title"
     :duration="0.2"
+    :overlay-class="['outside']"
     :overlay-style="{ background: 'rgba(0, 0, 0, .1)' }"
   >
     <div px="4" pb="8">
@@ -23,3 +24,10 @@ const show = ref(false);
     </div>
   </action-sheet>
 </template>
+
+<style>
+.outside {
+  -webkit-transform: translate3d(0, 0, 1px);
+  transform: translate3d(0, 0, 1px);
+}
+</style>

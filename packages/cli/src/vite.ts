@@ -34,9 +34,7 @@ export async function resolveViteOption(option: CoBookCliOption) {
           allow: [searchForWorkspaceRoot(option.root), searchForWorkspaceRoot(option.clientRoot)]
         }
       },
-      optimizeDeps: {
-        
-      }
+      optimizeDeps: {}
     };
 
     return mergeConfig(config, clientViteConfig.config);
