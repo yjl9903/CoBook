@@ -18,7 +18,7 @@ watch(currentEdit, (value) => {
   if (!!value) {
     emit('close');
   }
-})
+});
 
 watch(
   () => props.account,
