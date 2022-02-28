@@ -1,4 +1,6 @@
-import { resolve } from 'path';
+import { join, resolve } from 'path';
+import { existsSync, readFileSync } from 'fs';
+
 import { defineConfig } from 'vite';
 import { VitePWA } from 'vite-plugin-pwa';
 import vue from '@vitejs/plugin-vue';
@@ -11,9 +13,9 @@ import presetUno from '@unocss/preset-uno';
 import presetAttributify from '@unocss/preset-attributify';
 import transformerDirective from '@unocss/transformer-directives';
 
-import { version } from './package.json';
-
 const OFFICIAL_REPO = 'yjl9903/CoBook';
+
+const version = findPackage().version;
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -76,3 +78,12 @@ export default defineConfig({
     createCoBookPlugin()
   ]
 });
+
+function findPackage() {
+  for (const rp of ['./package.json', '../package.json']) {
+    const p = join(__dirname, rp);
+    if (existsSync(p)) {
+      return JSON.parse(readFileSync(p, 'utf-8'));
+    }
+  }
+}
