@@ -16,8 +16,10 @@ import {
 import { Template } from '@cobook/shared';
 import { template, categories } from '~cobook';
 import { useAccountStore } from '@/logic/account';
-import AccountList from './List.vue';
 import { EnterHomeKey } from '@/constant';
+
+import AccountList from './List.vue';
+import TagSelector from './TagSelector.vue';
 
 inject<Ref<boolean>>(EnterHomeKey)!.value = true;
 
@@ -102,14 +104,7 @@ const submit = async () => {
         </div>
       </cell>
 
-      <cell>
-        <div flex justify="between">
-          <span>标签</span>
-          <span>
-            <Tag ml="1" v-for="tag in tags" :tag="tag"></Tag>
-          </span>
-        </div>
-      </cell>
+      <tag-selector v-model="tags"></tag-selector>
 
       <cell>
         <tabs v-model:active="active">
@@ -126,9 +121,13 @@ const submit = async () => {
               >
                 <div flex flex-col items="center" justify="center">
                   <van-image :src="t.icon" height="50%" width="50%">
-                    <template v-slot:loading> <loading type="spinner" size="20" /> </template
-                  ></van-image>
-                  <span class="van-grid-item__text mt-2">{{ t.name }}</span>
+                    <template v-slot:loading>
+                      <div h="full" w="full">
+                        <loading type="spinner" size="20" />
+                      </div>
+                    </template>
+                  </van-image>
+                  <span class="van-grid-item__text" mt="2">{{ t.name }}</span>
                 </div>
               </grid-item>
             </grid>

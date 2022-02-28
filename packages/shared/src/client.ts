@@ -29,7 +29,7 @@ export class CoBookClient {
   async create(account: AccountPayload): Promise<AccountItem> {
     const { data } = await this.api.post('/account', {
       ...account,
-      timestamp: new Date().getTime(),
+      timestamp: new Date().toISOString(),
       fingerprint: this.fingerprint
     });
     if (CoBookClient.isResponseError(data)) {

@@ -6,6 +6,8 @@ import format from 'date-fns/format';
 import { AccountItem } from '@cobook/shared';
 import { useAccountStore } from '@/logic/account';
 
+import TagSelector from './TagSelector.vue';
+
 const props = defineProps<{ account: AccountItem }>();
 
 const currentEdit = ref<AccountItem | undefined>(props.account);
@@ -68,18 +70,11 @@ const deleteAccount = async () => {
             <Category :category="currentEdit.category"></Category>
           </div>
         </van-cell>
-        <van-cell>
-          <div flex justify="between">
-            <span>标签</span>
-            <span>
-              <Tag ml="1" v-for="tag in currentEdit.tags" :tag="tag"></Tag>
-            </span>
-          </div>
-        </van-cell>
+        <tag-selector v-model="currentEdit.tags"></tag-selector>
         <van-cell>
           <div flex justify="between">
             <span>时间</span>
-            <span>{{ format(new Date(currentEdit.timestamp), 'yyyy-MM-dd hh:mm') }}</span>
+            <span>{{ format(new Date(currentEdit.timestamp), 'yyyy-MM-dd hh:mm:ss') }}</span>
           </div>
         </van-cell>
         <field
