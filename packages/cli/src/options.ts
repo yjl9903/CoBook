@@ -49,8 +49,8 @@ function getConfig(root: string): RawCoBookConfig {
 async function getClientRoot(root: string) {
   const paths = [
     path.join(root, 'client'),
-    path.join(__dirname, '../../client'),
-    path.join(__dirname, '../client')
+    path.join(__dirname, '../client'),
+    path.join(__dirname, '../../client')
   ];
   for (const p of paths) {
     if (existsSync(path.join(p, 'package.json'))) {
@@ -64,8 +64,8 @@ async function getWorkerRoot(root: string) {
   const paths = [
     path.join(root, 'worker'),
     path.join(root, 'worker/dist'),
-    path.join(__dirname, '../../worker/dist'),
-    path.join(__dirname, '../worker')
+    path.join(__dirname, '../worker'),
+    path.join(__dirname, '../../worker/dist')
   ];
   for (const p of paths) {
     if (existsSync(path.join(p, 'index.js'))) {
