@@ -66,7 +66,12 @@ export default defineConfig({
     }),
     Icons(),
     Unocss({
-      presets: [presetUno(), presetAttributify(), transformerDirective()]
+      presets: [presetUno(), presetAttributify(), transformerDirective()],
+      theme: {
+        fontFamily: {
+          mono: ['var(--font-family-mono)', 'var(--font-family-base)']
+        }
+      }
     }),
     createCoBookPlugin()
   ]
