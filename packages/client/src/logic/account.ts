@@ -17,6 +17,22 @@ export const useAccountStore = defineStore('account', {
   getters: {
     accounts(): AccountItem[] {
       return this._accounts.sort((lhs, rhs) => lhs.timestamp.localeCompare(rhs.timestamp));
+    },
+    groupBy() {
+      return (fn: (item: AccountItem) => string) => {
+        console.log('trigger');
+
+        const map: Map<string, AccountItem[]> = new Map();
+        for (const item of this.accounts) {
+          const key = fn(item);
+          if (map.has(key)) {
+            map.get(key)!.push(item);
+          } else {
+            map.set(key, [item]);
+          }
+        }
+        return map;
+      };
     }
   },
   actions: {

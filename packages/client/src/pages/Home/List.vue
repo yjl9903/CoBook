@@ -3,13 +3,11 @@ import { ref } from 'vue';
 import { List } from 'vant';
 import format from 'date-fns/format';
 
-import { useAccountStore } from '@/logic/account';
+import type { AccountItem } from '@cobook/shared';
 
 import Editor from './Editor.vue';
 
-const store = useAccountStore();
-
-store.init();
+defineProps<{ accounts: AccountItem[] }>();
 
 const currentEdit = ref();
 
@@ -26,7 +24,7 @@ const isInlineDescription = (d?: string) => {
   <van-cell-group inset>
     <List>
       <van-cell
-        v-for="item in store.accounts.slice().reverse()"
+        v-for="item in accounts.slice().reverse()"
         :key="item.timestamp"
         clickable
         @click="currentEdit = item"

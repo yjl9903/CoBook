@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, inject, Ref } from 'vue';
+import { ref, inject, Ref, watch } from 'vue';
 import {
   Icon,
   Field,
@@ -13,6 +13,7 @@ import {
   Loading,
   Notify
 } from 'vant';
+import { format, subDays } from 'date-fns';
 
 import { Template } from '@cobook/shared';
 import { template, categories } from '~cobook';
@@ -26,6 +27,19 @@ import CatSelector from './CatSelector.vue';
 inject<Ref<boolean>>(EnterHomeKey)!.value = true;
 
 const store = useAccountStore();
+
+store.init();
+
+const groupByDay = ref(store.groupBy((item) => format(new Date(item.timestamp), 'yyyy-MM-dd')));
+watch(store.accounts, () => {
+  groupByDay.value = store.groupBy((item) => format(new Date(item.timestamp), 'yyyy-MM-dd'));
+});
+const now = new Date();
+const recentWeek = [0, 1, 2, 3, 4, 5, 6].map((d) => {
+  const date = subDays(now, d);
+  return format(date, 'yyyy-MM-dd');
+});
+
 const active = ref();
 const show = ref(false);
 
@@ -151,7 +165,11 @@ const submit = async () => {
       </van-button>
     </div>
 
-    <account-list></account-list>
+    <div v-for="d in recentWeek" :key="d">
+      <div v-show="!!groupByDay.get(d)" mb="4">
+        <account-list :accounts="groupByDay.get(d) ?? []"></account-list>
+      </div>
+    </div>
 
     <number-keyboard
       v-model="amt"
