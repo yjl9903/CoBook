@@ -91,6 +91,15 @@ export class CoBookClient {
     };
   }
 
+  async log<T extends LogItem>(log: T): Promise<T> {
+    const { data } = await this.api.post<T>(`/account/log`, log);
+    if (CoBookClient.isResponseError(data)) {
+      await this.handleError(data);
+      throw data;
+    }
+    return data;
+  }
+
   async create(log: InsertLogItem): Promise<InsertLogItem> {
     const { data } = await this.api.post<InsertLogItem>(`/account/log`, log);
     if (CoBookClient.isResponseError(data)) {

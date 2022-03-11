@@ -80,8 +80,13 @@ export const useAccountStore = defineStore('account', {
           this.excute(logs[cur]);
           cur++;
         }
+      } else if (cur === logs.length) {
+        while (cur < this.logs.length) {
+          authStore.client.log(this.logs[cur]);
+          cur++;
+        }
       } else {
-        // crash
+        // Crash
       }
     },
     async push(payload: AccountPayload) {
