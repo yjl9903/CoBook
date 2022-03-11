@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import { List } from 'vant';
+import { List as VanList } from 'vant';
 import format from 'date-fns/format';
 
 import type { AccountItem } from '@cobook/shared';
@@ -22,7 +22,7 @@ const isInlineDescription = (d?: string) => {
 
 <template>
   <van-cell-group inset>
-    <List>
+    <van-list>
       <van-cell
         v-for="item in accounts.slice().reverse()"
         :key="item.timestamp"
@@ -40,7 +40,7 @@ const isInlineDescription = (d?: string) => {
           <span font="mono">￥{{ item.amount }}</span>
         </div>
       </van-cell>
-    </List>
+    </van-list>
 
     <Editor :account="currentEdit" @close="currentEdit = undefined"></Editor>
   </van-cell-group>

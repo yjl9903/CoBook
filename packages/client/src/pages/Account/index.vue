@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import { useAccountStore } from '@/logic/account';
-import List from '../Home/List.vue';
+import AccountList from '../Home/List.vue';
 
 const store = useAccountStore();
 </script>
 
 <template>
   <div pt="4">
-    <List :accounts="store.accounts"></List>
+    <account-list :accounts="store.accounts"></account-list>
   </div>
 </template>
