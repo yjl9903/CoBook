@@ -44,16 +44,16 @@ const store = useAccountStore();
 
 const saveAccount = async () => {
   if (currentEdit.value) {
-    await store.update(props.account.timestamp, currentEdit.value);
     showEdit.value = false;
+    await store.update(props.account.timestamp, currentEdit.value);
     Notify({ message: '更新成功', type: 'success' });
   }
 };
 
 const deleteAccount = async () => {
   if (currentEdit.value) {
-    await store.delete(currentEdit.value);
     showEdit.value = false;
+    await store.delete(currentEdit.value);
     Notify({ message: '删除成功', type: 'success' });
   }
 };
