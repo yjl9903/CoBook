@@ -1,7 +1,7 @@
 import { Request } from 'itty-router';
 
 import { createRouter } from './router';
-import { createAccount, deleteAccount, listAccounts, updateAccount } from './service';
+import { createLog, listLogs } from './service';
 import { makeResponse } from './utils';
 
 const router = createRouter((router) => {
@@ -9,25 +9,14 @@ const router = createRouter((router) => {
     return makeResponse('Hello, this is CoBook.');
   });
 
-  router.get('/accounts', async () => {
-    return listAccounts();
+  router.get('/account/log', async () => {
+    return listLogs();
   });
 
   // TODO: valiate
-  router.post('/account', async (request: Request) => {
+  router.post('/account/log', async (request: Request) => {
     const content = await request.json!();
-    return createAccount(content);
-  });
-
-  router.put('/account/:id', async (request: Request) => {
-    const id = request.params?.id;
-    const content = await request.json!();
-    return updateAccount(id, content);
-  });
-
-  router.delete('/account/:id', async (request: Request) => {
-    const id = request.params?.id;
-    return deleteAccount(id);
+    return createLog(content);
   });
 });
 

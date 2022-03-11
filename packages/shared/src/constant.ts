@@ -1,3 +1,9 @@
+export const INSERT = 'INSERT';
+
+export const UPDATE = 'UPDATE';
+
+export const DELETE = 'DELETE';
+
 export const ColorList = [
   '#f9a8d4',
   '#fda4af',

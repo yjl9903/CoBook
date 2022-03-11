@@ -4,6 +4,8 @@ import { random } from './utils';
 
 export * from './client';
 
+export * from './constant';
+
 export { RawCoBookConfig, Template, TagItem, CategoryItem, AccountItem };
 
 export function transformConfig(config?: RawCoBookConfig) {

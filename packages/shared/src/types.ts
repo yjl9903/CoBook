@@ -49,7 +49,5 @@ export interface AccountItem {
 
   description: string;
 
-  fingerprint: string;
-
   timestamp: string;
 }

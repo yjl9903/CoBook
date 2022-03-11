@@ -1,7 +1,33 @@
 import axios, { AxiosInstance } from 'axios';
+
+import { DELETE, INSERT, UPDATE } from './constant';
 import { AccountItem } from './types';
 
-export type AccountPayload = Omit<AccountItem, 'fingerprint' | 'timestamp'>;
+export type AccountPayload = Omit<AccountItem, 'timestamp'>;
+
+export type InsertLogItem = {
+  command: typeof INSERT;
+  timestamp: string;
+  fingerprint: string;
+  item: AccountItem;
+};
+
+export type UpdateLogItem = {
+  command: typeof UPDATE;
+  timestamp: string;
+  fingerprint: string;
+  item: AccountItem;
+  old: AccountItem;
+};
+
+export type DeleteLogItem = {
+  command: typeof DELETE;
+  timestamp: string;
+  fingerprint: string;
+  old: AccountItem;
+};
+
+export type LogItem = InsertLogItem | UpdateLogItem | DeleteLogItem;
 
 type ErrorHandler = (err: any) => Promise<void>;
 
@@ -26,12 +52,47 @@ export class CoBookClient {
     }
   }
 
-  async create(account: AccountPayload): Promise<AccountItem> {
-    const { data } = await this.api.post('/account', {
-      ...account,
+  makeInsertLog(account: AccountPayload): InsertLogItem {
+    const timestamp = new Date().toISOString();
+    return {
+      command: INSERT,
+      timestamp,
+      fingerprint: this.fingerprint,
+      item: {
+        ...account,
+        timestamp
+      }
+    };
+  }
+
+  makeUpdateLog(account: AccountItem, patch: Partial<AccountItem>): UpdateLogItem {
+    return {
+      command: UPDATE,
       timestamp: new Date().toISOString(),
-      fingerprint: this.fingerprint
-    });
+      fingerprint: this.fingerprint,
+      item: {
+        ...account,
+        ...patch
+      },
+      old: {
+        ...account
+      }
+    };
+  }
+
+  makeDeleteLog(account: AccountItem): DeleteLogItem {
+    return {
+      command: DELETE,
+      timestamp: new Date().toISOString(),
+      fingerprint: this.fingerprint,
+      old: {
+        ...account
+      }
+    };
+  }
+
+  async create(log: InsertLogItem): Promise<InsertLogItem> {
+    const { data } = await this.api.post<InsertLogItem>(`/account/log`, log);
     if (CoBookClient.isResponseError(data)) {
       await this.handleError(data);
       throw data;
@@ -39,20 +100,8 @@ export class CoBookClient {
     return data;
   }
 
-  /**
-   * Update account item
-   * @param timestamp old timestamp
-   * @param account new account item
-   * @returns
-   */
-  async update(
-    timestamp: string,
-    account: AccountPayload & { timestamp: string }
-  ): Promise<AccountItem> {
-    const { data } = await this.api.put(`/account/${timestamp}`, {
-      ...account,
-      fingerprint: this.fingerprint
-    });
+  async update(log: UpdateLogItem): Promise<UpdateLogItem> {
+    const { data } = await this.api.post<UpdateLogItem>(`/account/log`, log);
     if (CoBookClient.isResponseError(data)) {
       await this.handleError(data);
       throw data;
@@ -60,22 +109,22 @@ export class CoBookClient {
     return data;
   }
 
-  async delete(timestamp: string): Promise<boolean> {
-    const { data } = await this.api.delete(`/account/${timestamp}`);
+  async delete(log: DeleteLogItem): Promise<DeleteLogItem> {
+    const { data } = await this.api.post<DeleteLogItem>(`/account/log`, log);
     if (CoBookClient.isResponseError(data)) {
-      return false;
+      throw data;
     } else {
-      return true;
+      return data;
     }
   }
 
-  async list(): Promise<AccountItem[]> {
-    const { data } = await this.api.get('/accounts');
+  async list(): Promise<LogItem[]> {
+    const { data } = await this.api.get('/account/log');
     if (CoBookClient.isResponseError(data)) {
       await this.handleError(data);
       throw data;
     }
-    return data.accounts;
+    return data.logs;
   }
 
   private static isResponseError(resp: any) {
