@@ -2,6 +2,7 @@
 import { ref, inject, Ref, watch } from 'vue';
 import {
   Icon,
+  Divider,
   Field,
   NumberKeyboard,
   CellGroup,
@@ -30,14 +31,15 @@ const store = useAccountStore();
 
 store.init();
 
-const groupByDay = ref(store.groupBy((item) => format(new Date(item.timestamp), 'yyyy-MM-dd')));
+const formatText = 'yyyy 年 M 月 d 日';
+const groupByDay = ref(store.groupBy((item) => format(new Date(item.timestamp), formatText)));
 watch(store.accounts, () => {
-  groupByDay.value = store.groupBy((item) => format(new Date(item.timestamp), 'yyyy-MM-dd'));
+  groupByDay.value = store.groupBy((item) => format(new Date(item.timestamp), formatText));
 });
 const now = new Date();
 const recentWeek = [0, 1, 2, 3, 4, 5, 6].map((d) => {
   const date = subDays(now, d);
-  return format(date, 'yyyy-MM-dd');
+  return format(date, formatText);
 });
 
 const active = ref();
@@ -155,7 +157,7 @@ const submit = async () => {
       </cell>
     </cell-group>
 
-    <div style="margin: 16px" class="icon-btn" flex justify="center">
+    <div style="margin: 16px 16px 24px" class="icon-btn" flex justify="center">
       <van-button round block type="success" @click="submit">记录</van-button>
       <van-button ml="2" px="0" w="16" url="weixin://" round>
         <icon name="/img/wechat.svg" size="1.25rem" />
@@ -165,9 +167,12 @@ const submit = async () => {
       </van-button>
     </div>
 
+    <Divider :hairline="false"></Divider>
+
     <div v-for="d in recentWeek" :key="d">
       <div v-show="!!groupByDay.get(d)" mb="4">
-        <account-list :accounts="groupByDay.get(d) ?? []"></account-list>
+        <h3 style="margin: 0 1.5rem 0.5rem" text="gray-500">{{ d }}</h3>
+        <account-list :accounts="groupByDay.get(d) ?? []" format-text="HH:mm"></account-list>
       </div>
     </div>
 

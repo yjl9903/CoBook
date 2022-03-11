@@ -7,7 +7,7 @@ import type { AccountItem } from '@cobook/shared';
 
 import Editor from './Editor.vue';
 
-defineProps<{ accounts: AccountItem[] }>();
+defineProps<{ accounts: AccountItem[]; formatText?: string }>();
 
 const currentEdit = ref();
 
@@ -32,7 +32,7 @@ const isInlineDescription = (d?: string) => {
         <div flex justify="between" items="center">
           <span inline-flex items="center">
             <span inline-block mr="2" text="gray-400">{{
-              format(new Date(item.timestamp), 'yyyy-MM-dd HH:mm')
+              format(new Date(item.timestamp), formatText ?? 'yyyy-MM-dd HH:mm')
             }}</span>
             <Category :category="item.category"></Category>
             <span ml="2" v-if="isInlineDescription(item.description)">{{ item.description }}</span>
