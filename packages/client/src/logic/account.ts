@@ -20,8 +20,6 @@ export const useAccountStore = defineStore('account', {
     },
     groupBy() {
       return (fn: (item: AccountItem) => string) => {
-        console.log('trigger');
-
         const map: Map<string, AccountItem[]> = new Map();
         for (const item of this.accounts) {
           const key = fn(item);
