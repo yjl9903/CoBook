@@ -101,7 +101,7 @@ const submit = async () => {
 </script>
 
 <template>
-  <div id="home" h="full" pt="4">
+  <div id="home" min-h="full" pt="4">
     <cell-group inset>
       <field
         v-model="amt"
@@ -175,8 +175,6 @@ const submit = async () => {
         <account-list :accounts="groupByDay.get(d) ?? []" format-text="HH:mm"></account-list>
       </div>
     </div>
-
-    <div h="4" w="full"></div>
 
     <number-keyboard
       v-model="amt"

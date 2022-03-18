@@ -56,7 +56,7 @@ const handleSelect = (action: PopoverAction) => {
     </template>
   </nav-bar>
 
-  <router-view id="main-view" class="h-full min-h-full overflow-auto"></router-view>
+  <router-view id="main-view" min-h="full" pb="8"></router-view>
 
   <div id="popup-container"></div>
 </template>
