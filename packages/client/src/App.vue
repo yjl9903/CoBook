@@ -1,11 +1,29 @@
 <script setup lang="ts">
-import { ref, computed, provide } from 'vue';
+import { ref, computed, provide, watch } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
-import { NavBar, Icon, Popover, PopoverAction } from 'vant';
+import { NavBar, Icon, Popover, PopoverAction, Dialog } from 'vant';
+import { useRegisterSW } from 'virtual:pwa-register/vue';
 
+import 'uno.css';
 import { name } from '~cobook';
+
 import { authorized } from './logic/auth';
 import { EnterHomeKey } from './constant';
+
+const { needRefresh, updateServiceWorker } = useRegisterSW();
+
+watch(needRefresh, (flag) => {
+  if (flag) {
+    Dialog.confirm({
+      title: '更新',
+      message: '有更新可用, 点击确认刷新.'
+    })
+      .then(() => {
+        updateServiceWorker();
+      })
+      .catch(() => {});
+  }
+});
 
 const route = useRoute();
 const router = useRouter();
