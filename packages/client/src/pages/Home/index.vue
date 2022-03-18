@@ -176,6 +176,8 @@ const submit = async () => {
       </div>
     </div>
 
+    <div h="4" w="full"></div>
+
     <number-keyboard
       v-model="amt"
       theme="custom"
