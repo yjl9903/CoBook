@@ -1,0 +1,1 @@
+import{u as t,_ as e}from"./index.a3beffc6.js";import{b as s,o as c,g as n,l as a,h as r}from"./vendor.6acf3243.js";const u={pt:"4"},l=s({setup(_){const o=t();return(p,m)=>(c(),n("div",u,[a(e,{accounts:r(o).accounts},null,8,["accounts"])]))}});export{l as default};
